@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #1f2937;
+}
+
+/* Sidebar */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 230px;
+    height: 100vh;
+
+    background: #1f2937;
+
+    padding-top: 25px;
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+
+    padding: 15px 30px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 16px;
+}
+
+.sidebar a:hover {
+    background: #2563eb;
+}
+
+.sidebar a.active {
+    background: #2563eb;
+}
+
+
+/* Main Content */
+
+.main-content {
+    margin-left: 230px;
+
+    padding: 40px;
+}
+
+.main-content h1 {
+    font-size: 32px;
+
+    margin-bottom: 8px;
+
+    color: #111827;
+}
+
+.main-content > p {
+    color: #6b7280;
+
+    margin-bottom: 30px;
+}
+
+
+/* Job Card */
+
+.job-card {
+    width: 750px;
+
+    max-width: 100%;
+
+    background: white;
+
+    padding: 32px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+}
+
+.job-card h2 {
+    margin-bottom: 25px;
+
+    color: #111827;
+}
+
+
+/* Labels */
+
+.job-card label {
+    display: block;
+
+    margin-top: 18px;
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    color: #374151;
+}
+
+
+/* Inputs */
+
+.job-card input,
+.job-card textarea {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.job-card input:focus,
+.job-card textarea:focus {
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.10);
+}
+
+
+/* Textarea */
+
+.job-card textarea {
+    min-height: 140px;
+
+    resize: vertical;
+}
+
+
+/* Button */
+
+.job-card button {
+    margin-top: 25px;
+
+    padding: 13px 28px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.job-card button:hover {
+    background: #1d4ed8;
+}
+
+
+/* Message */
+
+#message {
+    margin-top: 18px;
+
+    font-weight: bold;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 180px;
+    }
+
+    .main-content {
+        margin-left: 180px;
+
+        padding: 20px;
+    }
+
+    .job-card {
+        width: 100%;
+    }
+}

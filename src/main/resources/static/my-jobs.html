@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Jobs - Job Portal</title>
+    <link rel="stylesheet" href="my-jobs.css">
+</head>
+
+<body>
+<div id="jobsContainer"></div>
+<div class="sidebar">
+    <h2>Job Portal</h2>
+
+    <a href="employer-dashboard.html">Dashboard</a>
+    <a href="post-job.html">Post Job</a>
+    <a href="my-jobs.html">My Jobs</a>
+    <a href="applications.html">Applications</a>
+    <a href="profile.html">Profile</a>
+    <a href="index.html">Logout</a>
+</div>
+
+<div class="main-content">
+
+    <div class="top">
+        <div>
+            <h1>My Jobs</h1>
+            <p>Manage your posted jobs</p>
+        </div>
+
+        <a href="post-job.html" class="post-btn">+ Post New Job</a>
+    </div>
+
+    <div class="job-container">
+
+        <div class="job-card">
+            <h2>Java Developer</h2>
+            <p><strong>Company:</strong> ABC Technologies</p>
+            <p><strong>Location:</strong> Chennai</p>
+            <p><strong>Salary:</strong> ₹4 - ₹6 LPA</p>
+            <p><strong>Skills:</strong> Java, Spring Boot, MySQL</p>
+
+            <span class="status">Active</span>
+
+            <div class="actions">
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn" onclick="deleteJob(this)">
+                    Delete
+                </button>
+            </div>
+        </div>
+
+        <div class="job-card">
+            <h2>Web Developer</h2>
+            <p><strong>Company:</strong> XYZ Solutions</p>
+            <p><strong>Location:</strong> Trichy</p>
+            <p><strong>Salary:</strong> ₹3 - ₹5 LPA</p>
+            <p><strong>Skills:</strong> HTML, CSS, JavaScript</p>
+
+            <span class="status">Active</span>
+
+            <div class="actions">
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn" onclick="deleteJob(this)">
+                    Delete
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="my-jobs.js"></script>
+
+</body>
+</html>

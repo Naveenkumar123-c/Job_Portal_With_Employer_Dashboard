@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    padding: 40px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    margin-bottom: 25px;
+}
+
+.application-card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #ccc;
+}
+
+.application-card h2 {
+    margin-bottom: 15px;
+}
+
+.application-card p {
+    margin: 8px 0;
+}
+
+button {
+    padding: 10px 18px;
+    margin: 15px 5px 10px 0;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background: #2563eb;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.status {
+    font-weight: bold;
+}
+
+a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #2563eb;
+    text-decoration: none;
+}

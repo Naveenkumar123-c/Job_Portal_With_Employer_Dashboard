@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>Job Portal</h2>
+
+        <a href="employer-dashboard.html">Dashboard</a>
+        <a href="post-job.html">Post Job</a>
+        <a href="my-jobs.html">My Jobs</a>
+        <a href="applications.html">Applications</a>
+        <a href="profile.html">Profile</a>
+        <a href="index.html">Logout</a>
+    </div>
+
+    <div class="main-content">
+      <div class="profile-summary">
+    <h2>Employer Profile</h2>
+
+    <p>
+        <strong>Name:</strong>
+        <span id="profileName">Not set</span>
+    </p>
+
+    <p>
+        <strong>Company:</strong>
+        <span id="profileCompany">Not set</span>
+    </p>
+
+    <p>
+        <strong>Email:</strong>
+        <span id="profileEmail">Not set</span>
+    </p>
+
+    <a href="profile.html" class="edit-profile">
+        Edit Profile
+    </a>
+</div>
+
+        <header>
+            <h1>Employer Dashboard</h1>
+            <p>Welcome, Employer!</p>
+        </header>
+
+        <section class="cards">
+
+            <div class="card">
+                <h3>Total Jobs</h3>
+                <p>10</p>
+            </div>
+
+            <div class="card">
+                <h3>Applications</h3>
+                <p>45</p>
+            </div>
+
+            <div class="card">
+                <h3>Active Jobs</h3>
+                <p>6</p>
+            </div>
+
+            <div class="card">
+                <h3>Shortlisted</h3>
+                <p>12</p>
+            </div>
+
+        </section>
+
+        <section class="recent">
+            <h2>Recent Applications</h2>
+
+            <table>
+                <tr>
+                    <th>Candidate</th>
+                    <th>Job</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Arun Kumar</td>
+                    <td>Java Developer</td>
+                    <td>Pending</td>
+                </tr>
+
+                <tr>
+                    <td>Priya</td>
+                    <td>Web Developer</td>
+                    <td>Shortlisted</td>
+                </tr>
+
+                <tr>
+                    <td>Rahul</td>
+                    <td>Software Engineer</td>
+                    <td>Pending</td>
+                </tr>
+            </table>
+        </section>
+
+    </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    fetch("/api/profile/1")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Profile not found");
+            }
+
+            return response.json();
+        })
+        .then(profile => {
+
+            document.getElementById("profileName").textContent =
+                profile.name || "Not set";
+
+            document.getElementById("profileCompany").textContent =
+                profile.company || "Not set";
+
+            document.getElementById("profileEmail").textContent =
+                profile.email || "Not set";
+        })
+        .catch(error => {
+            console.error("Error loading profile:", error);
+        });
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal - Register</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+    <div class="register-container">
+        <h1>Job Portal</h1>
+        <p>Create your account</p>
+
+        <form id="registerForm">
+
+            <input type="text" id="name" placeholder="Full Name" required>
+
+            <input type="email" id="email" placeholder="Email" required>
+
+            <input type="password" id="password" placeholder="Password" required>
+
+            <input type="password" id="confirmPassword"
+                   placeholder="Confirm Password" required>
+
+            <select id="role" required>
+                <option value="">Select Role</option>
+                <option value="candidate">Candidate</option>
+                <option value="employer">Employer</option>
+            </select>
+
+            <button type="submit">Register</button>
+
+            <p id="message"></p>
+        </form>
+
+        <p>
+            Already have an account?
+            <a href="index.html">Login</a>
+        </p>
+    </div>
+
+    <script src="register.js"></script>
+</body>
+</html>

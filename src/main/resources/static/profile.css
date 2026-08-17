@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #1f2937;
+}
+
+/* Sidebar */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 230px;
+    height: 100vh;
+
+    background-color: #1f2937;
+
+    padding-top: 25px;
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+
+    padding: 15px 25px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 16px;
+}
+
+.sidebar a:hover {
+    background-color: #2563eb;
+}
+
+.sidebar a.active {
+    background-color: #2563eb;
+}
+
+/* Main Content */
+
+.main-content {
+    margin-left: 230px;
+
+    padding: 40px;
+}
+
+.main-content h1 {
+    font-size: 30px;
+
+    color: #1f2937;
+
+    margin-bottom: 10px;
+}
+
+.main-content > p {
+    color: #6b7280;
+
+    margin-bottom: 25px;
+}
+
+/* Profile Card */
+
+.profile-card {
+    width: 650px;
+
+    max-width: 100%;
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card h2 {
+    margin-bottom: 20px;
+
+    color: #1f2937;
+}
+
+/* Labels */
+
+.profile-card label {
+    display: block;
+
+    margin-top: 16px;
+
+    margin-bottom: 7px;
+
+    font-weight: bold;
+
+    color: #374151;
+}
+
+/* Input */
+
+.profile-card input,
+.profile-card textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.profile-card input:focus,
+.profile-card textarea:focus {
+    border-color: #2563eb;
+}
+
+/* Resume */
+
+.profile-card input[type="file"] {
+    background-color: #f9fafb;
+
+    padding: 10px;
+}
+
+/* Textarea */
+
+.profile-card textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+/* Save Button */
+
+.profile-card button {
+    margin-top: 25px;
+
+    padding: 12px 25px;
+
+    background-color: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.profile-card button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Message */
+
+#message {
+    margin-top: 15px;
+
+    font-weight: bold;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 180px;
+    }
+
+    .main-content {
+        margin-left: 180px;
+
+        padding: 20px;
+    }
+
+    .profile-card {
+        width: 100%;
+    }
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Job Portal - Profile</title>
+
+    <link rel="stylesheet" href="profile.css">
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>Job Portal</h2>
+
+        <a href="employer-dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="post-job.html">
+            Post Job
+        </a>
+
+        <a href="my-jobs.html">
+            My Jobs
+        </a>
+
+        <a href="applications.html">
+            Applications
+        </a>
+
+        <a href="profile.html" class="active">
+            Profile
+        </a>
+
+        <a href="index.html">
+            Logout
+        </a>
+
+    </div>
+
+
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <h1>My Profile</h1>
+
+        <p>
+            Manage your profile information.
+        </p>
+
+
+        <!-- Profile Card -->
+
+        <div class="profile-card">
+
+            <h2>Profile Information</h2>
+
+
+            <!-- Profile Form -->
+
+            <form id="profileForm">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+
+                <label for="company">
+                    Company Name
+                </label>
+
+                <input
+                    type="text"
+                    id="company"
+                    placeholder="Enter your company name"
+                    required
+                >
+
+
+                <label for="phone">
+                    Phone
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Enter phone number"
+                    required
+                >
+
+
+                <label for="qualification">
+                    Qualification
+                </label>
+
+                <input
+                    type="text"
+                    id="qualification"
+                    placeholder="Enter your qualification"
+                    required
+                >
+
+
+                <label for="skills">
+                    Skills
+                </label>
+
+                <textarea
+                    id="skills"
+                    placeholder="Java, HTML, CSS, JavaScript, etc."
+                    required
+                ></textarea>
+
+
+                <label for="resume">
+                    Resume
+                </label>
+
+                <input
+                    type="file"
+                    id="resume"
+                    accept=".pdf,.doc,.docx"
+                >
+
+
+                <button type="submit">
+                    Save Profile
+                </button>
+
+
+                <p id="message"></p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="profile.js"></script>
+
+</body>
+
+</html>

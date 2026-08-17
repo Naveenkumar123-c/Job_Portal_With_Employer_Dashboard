@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications</title>
+    <link rel="stylesheet" href="applications.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Job Applications</h1>
+
+    <div class="application-card">
+        <h2>Rahul Kumar</h2>
+
+        <p><b>Email:</b> rahul@gmail.com</p>
+        <p><b>Job:</b> Java Developer</p>
+        <p><b>Experience:</b> Fresher</p>
+
+        <button onclick="updateStatus(this, 'Selected')">
+            Select
+        </button>
+
+        <button onclick="updateStatus(this, 'Rejected')">
+            Reject
+        </button>
+
+        <p class="status">Status: Pending</p>
+    </div>
+
+    <a href="employer-dashboard.html">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+<script src="applications.js"></script>
+
+</body>
+</html>

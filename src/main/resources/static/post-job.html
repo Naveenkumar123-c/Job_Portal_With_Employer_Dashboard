@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Post a Job</title>
+
+    <link rel="stylesheet" href="post-job.css">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+
+    <h2>Job Portal</h2>
+
+    <a href="employer-dashboard.html">Dashboard</a>
+    <a href="post-job.html" class="active">Post Job</a>
+    <a href="my-jobs.html">My Jobs</a>
+    <a href="applications.html">Applications</a>
+    <a href="profile.html">Profile</a>
+    <a href="login.html">Logout</a>
+
+</div>
+
+
+<!-- Main Content -->
+<div class="main-content">
+
+    <h1>Post a New Job</h1>
+
+    <p>Create a job opportunity for candidates.</p>
+
+
+    <!-- Job Form -->
+    <div class="job-card">
+
+        <h2>Job Details</h2>
+
+        <form id="jobForm">
+
+            <label for="jobTitle">Job Title</label>
+
+            <input
+                type="text"
+                id="jobTitle"
+                name="jobTitle"
+                placeholder="Example: Java Developer"
+                required
+            >
+
+
+            <label for="companyName">Company Name</label>
+
+            <input
+                type="text"
+                id="companyName"
+                name="companyName"
+                placeholder="Example: ACN"
+                required
+            >
+
+
+            <label for="location">Location</label>
+
+            <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Example: Chennai"
+                required
+            >
+
+
+            <label for="salary">Salary</label>
+
+            <input
+                type="text"
+                id="salary"
+                name="salary"
+                placeholder="Example: ₹4 - ₹6 LPA"
+                required
+            >
+
+
+            <label for="skills">Skills</label>
+
+            <input
+                type="text"
+                id="skills"
+                name="skills"
+                placeholder="Example: Java, Spring Boot, MySQL"
+                required
+            >
+
+
+            <label for="description">Job Description</label>
+
+            <textarea
+                id="description"
+                name="description"
+                placeholder="Enter job description"
+                required
+            ></textarea>
+
+
+            <button type="submit">
+                Post Job
+            </button>
+
+        </form>
+
+
+        <p id="message"></p>
+
+    </div>
+
+</div>
+
+
+<script src="post-job.js"></script>
+
+</body>
+</html>
