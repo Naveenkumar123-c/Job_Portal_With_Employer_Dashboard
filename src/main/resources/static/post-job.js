@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const job = {
-            jobTitle: jobTitle,
-            companyName: companyName,
+            title: jobTitle,
+            company: companyName,
             location: location,
             salary: salary,
             skills: skills,

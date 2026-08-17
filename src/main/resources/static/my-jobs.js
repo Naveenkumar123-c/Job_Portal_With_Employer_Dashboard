@@ -1,51 +1,60 @@
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    const jobsContainer =
-        document.getElementById("jobsContainer");
+    const jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+    const jobsContainer = document.getElementById("jobsContainer");
 
     if (!jobsContainer) {
-        return;
-    }
-
-    const jobs =
-        JSON.parse(localStorage.getItem("jobs")) || [];
-
-    if (jobs.length === 0) {
-
-        jobsContainer.innerHTML =
-            "<p>No jobs posted yet.</p>";
-
+        console.error("jobsContainer not found");
         return;
     }
 
     jobsContainer.innerHTML = "";
 
-    jobs.forEach(function (job) {
+    if (jobs.length === 0) {
+        jobsContainer.innerHTML = "<p>No jobs posted yet.</p>";
+        return;
+    }
+
+    jobs.forEach(function (job, index) {
 
         const jobCard = document.createElement("div");
 
         jobCard.className = "job-card";
 
         jobCard.innerHTML = `
-            <h2>${job.title}</h2>
+            <h2>${job.jobTitle || "Job Title Not Set"}</h2>
 
-            <p><strong>Company:</strong>
-                ${job.company}
+            <p>
+                <strong>Company:</strong>
+                ${job.companyName || "Company Not Set"}
             </p>
 
-            <p><strong>Location:</strong>
-                ${job.location}
+            <p>
+                <strong>Location:</strong>
+                ${job.location || "Not Set"}
             </p>
 
-            <p><strong>Salary:</strong>
-                ${job.salary || "Not specified"}
+            <p>
+                <strong>Salary:</strong>
+                ${job.salary || "Not Set"}
             </p>
 
-            <p><strong>Description:</strong>
+            <p>
+                <strong>Skills:</strong>
+                ${job.skills || "Not Set"}
+            </p>
+
+            <p>
+                <strong>Description:</strong>
                 ${job.description || "No description"}
             </p>
 
-            <button onclick="deleteJob(${job.id})">
+            <span class="status">Active</span>
+
+            <br><br>
+
+            <button onclick="deleteJob(${index})">
                 Delete
             </button>
         `;
@@ -55,19 +64,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-function deleteJob(id) {
+function deleteJob(index) {
 
-    let jobs =
-        JSON.parse(localStorage.getItem("jobs")) || [];
+    let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
 
-    jobs = jobs.filter(function (job) {
-        return job.id !== id;
-    });
+    jobs.splice(index, 1);
 
-    localStorage.setItem(
-        "jobs",
-        JSON.stringify(jobs)
-    );
+    localStorage.setItem("jobs", JSON.stringify(jobs));
 
     location.reload();
 }
