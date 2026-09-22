@@ -1,3 +1,4 @@
+
 package com.jp.jobportal.entity;
 
 import jakarta.persistence.Column;
@@ -31,6 +32,7 @@ public class Job {
     private String description;
 
     private String salary;
+    private String skills;
 
     public Job() {
     }
@@ -90,4 +92,15 @@ public class Job {
     public void setSalary(String salary) {
         this.salary = salary;
     }
+    
+public String getSkills() {
+    return skills;
 }
+
+public void setSkills(String skills) {
+    this.skills = skills;
+}
+
+
+}
+

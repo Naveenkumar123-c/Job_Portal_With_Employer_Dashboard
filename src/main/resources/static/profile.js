@@ -2,15 +2,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.getElementById("profileForm");
 
-    // Load profile with ID 1
-    fetch("/api/profile/1")
+    let profileId = null;
+
+    // Load existing profile
+    fetch("/api/profile/me")
         .then(response => {
             if (!response.ok) {
                 throw new Error("Profile not found");
             }
+
             return response.json();
         })
         .then(profile => {
+
+            profileId = profile.id;
 
             document.getElementById("name").value =
                 profile.name || "";
@@ -35,38 +40,42 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
 
-    // Save profile
+    // Save / Update profile
     form.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
         const profile = {
-
             name: document.getElementById("name").value,
-
             email: document.getElementById("email").value,
-
             company: document.getElementById("company").value,
-
             phone: document.getElementById("phone").value,
-
-            qualification:
-                document.getElementById("qualification").value,
-
-            skills:
-                document.getElementById("skills").value
+            qualification: document.getElementById("qualification").value,
+            skills: document.getElementById("skills").value
         };
 
-        fetch("/api/profile", {
+        let url;
+        let method;
 
-            method: "POST",
+        if (profileId) {
 
+            // Update existing profile
+            url = "/api/profile/me";
+            method = "PUT";
+
+        } else {
+
+            // Create new profile
+            url = "/api/profile";
+            method = "POST";
+        }
+
+        fetch(url, {
+            method: method,
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify(profile)
-
         })
         .then(response => {
 
@@ -75,14 +84,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             return response.json();
-
         })
         .then(data => {
+
+            profileId = data.id;
 
             alert("Profile saved successfully!");
 
             console.log("Saved profile:", data);
-
         })
         .catch(error => {
 

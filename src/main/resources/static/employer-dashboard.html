@@ -1,136 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Employer Dashboard</title>
+
     <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
 
+    <!-- SIDEBAR -->
     <div class="sidebar">
+
         <h2>Job Portal</h2>
 
-        <a href="employer-dashboard.html">Dashboard</a>
-        <a href="post-job.html">Post Job</a>
-        <a href="my-jobs.html">My Jobs</a>
-        <a href="applications.html">Applications</a>
-        <a href="profile.html">Profile</a>
-        <a href="index.html">Logout</a>
+        <a href="employer-dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="post-job.html">
+            Post Job
+        </a>
+
+        <a href="my-jobs.html">
+            My Jobs
+        </a>
+
+        <a href="applications.html">
+            Applications
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+        <a href="index.html">
+            Logout
+        </a>
+
     </div>
 
+
+    <!-- MAIN CONTENT -->
     <div class="main-content">
-      <div class="profile-summary">
-    <h2>Employer Profile</h2>
 
-    <p>
-        <strong>Name:</strong>
-        <span id="profileName">Not set</span>
-    </p>
 
-    <p>
-        <strong>Company:</strong>
-        <span id="profileCompany">Not set</span>
-    </p>
+        <!-- PROFILE SUMMARY -->
+        <div class="profile-summary">
 
-    <p>
-        <strong>Email:</strong>
-        <span id="profileEmail">Not set</span>
-    </p>
+            <h2>Employer Profile</h2>
 
-    <a href="profile.html" class="edit-profile">
-        Edit Profile
-    </a>
-</div>
+            <p>
+                <strong>Name:</strong>
+                <span id="profileName">
+                    Loading...
+                </span>
+            </p>
 
+            <p>
+                <strong>Company:</strong>
+                <span id="profileCompany">
+                    Loading...
+                </span>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                <span id="profileEmail">
+                    Loading...
+                </span>
+            </p>
+
+            <a href="profile.html" class="edit-profile">
+                Edit Profile
+            </a>
+
+        </div>
+
+
+        <!-- HEADER -->
         <header>
-            <h1>Employer Dashboard</h1>
-            <p>Welcome, Employer!</p>
+
+            <h1>
+                Employer Dashboard
+            </h1>
+
+            <p>
+                Welcome, Employer!
+            </p>
+
         </header>
 
+
+        <!-- DASHBOARD CARDS -->
         <section class="cards">
 
+
+            <!-- TOTAL JOBS -->
             <div class="card">
-                <h3>Total Jobs</h3>
-                <p>10</p>
+
+                <h3>
+                    Total Jobs
+                </h3>
+
+                <p id="totalJobs">
+                    0
+                </p>
+
             </div>
 
+
+            <!-- APPLICATIONS -->
             <div class="card">
-                <h3>Applications</h3>
-                <p>45</p>
+
+                <h3>
+                    Applications
+                </h3>
+
+                <p id="totalApplications">
+                    0
+                </p>
+
             </div>
 
+
+            <!-- ACTIVE JOBS -->
             <div class="card">
-                <h3>Active Jobs</h3>
-                <p>6</p>
+
+                <h3>
+                    Active Jobs
+                </h3>
+
+                <p id="activeJobs">
+                    0
+                </p>
+
             </div>
 
+
+            <!-- SHORTLISTED -->
             <div class="card">
-                <h3>Shortlisted</h3>
-                <p>12</p>
+
+                <h3>
+                    Shortlisted
+                </h3>
+
+                <p id="shortlistedApplications">
+                    0
+                </p>
+
             </div>
 
         </section>
 
+
+        <!-- RECENT APPLICATIONS -->
         <section class="recent">
-            <h2>Recent Applications</h2>
+
+            <h2>
+                Recent Applications
+            </h2>
+
 
             <table>
-                <tr>
-                    <th>Candidate</th>
-                    <th>Job</th>
-                    <th>Status</th>
-                </tr>
 
-                <tr>
-                    <td>Arun Kumar</td>
-                    <td>Java Developer</td>
-                    <td>Pending</td>
-                </tr>
+                <thead>
 
-                <tr>
-                    <td>Priya</td>
-                    <td>Web Developer</td>
-                    <td>Shortlisted</td>
-                </tr>
+                    <tr>
 
-                <tr>
-                    <td>Rahul</td>
-                    <td>Software Engineer</td>
-                    <td>Pending</td>
-                </tr>
+                        <th>
+                            Candidate
+                        </th>
+
+                        <th>
+                            Job
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="recentApplications">
+
+                    <tr>
+
+                        <td colspan="3">
+                            Loading applications...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
             </table>
+
         </section>
 
-    </div>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
 
-    fetch("/api/profile/1")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Profile not found");
+    </div>
+
+
+    <!-- DASHBOARD JAVASCRIPT -->
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                loadProfile();
+
+                loadDashboardData();
+
+            }
+        );
+
+
+        // =========================
+        // LOAD EMPLOYER PROFILE
+        // =========================
+
+        function loadProfile() {
+
+            fetch("/api/profile/me")
+
+                .then(response => {
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            "Profile not found"
+                        );
+
+                    }
+
+                    return response.json();
+
+                })
+
+                .then(profile => {
+
+                    document.getElementById(
+                        "profileName"
+                    ).textContent =
+                        profile.name || "Not set";
+
+
+                    document.getElementById(
+                        "profileCompany"
+                    ).textContent =
+                        profile.company || "Not set";
+
+
+                    document.getElementById(
+                        "profileEmail"
+                    ).textContent =
+                        profile.email || "Not set";
+
+                })
+
+                .catch(error => {
+
+                    console.error(
+                        "Profile error:",
+                        error
+                    );
+
+                    document.getElementById(
+                        "profileName"
+                    ).textContent = "Not set";
+
+
+                    document.getElementById(
+                        "profileCompany"
+                    ).textContent = "Not set";
+
+
+                    document.getElementById(
+                        "profileEmail"
+                    ).textContent = "Not set";
+
+                });
+
+        }
+
+
+        // =========================
+        // LOAD DASHBOARD DATA
+        // =========================
+
+        function loadDashboardData() {
+
+            Promise.all([
+
+                fetch("/api/jobs")
+                    .then(response => {
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Failed to load jobs"
+                            );
+
+                        }
+
+                        return response.json();
+
+                    }),
+
+
+                fetch("/api/applications")
+                    .then(response => {
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Failed to load applications"
+                            );
+
+                        }
+
+                        return response.json();
+
+                    })
+
+            ])
+
+            .then(([jobs, applications]) => {
+
+                // -------------------------
+                // TOTAL JOBS
+                // -------------------------
+
+                document.getElementById(
+                    "totalJobs"
+                ).textContent = jobs.length;
+
+
+                // -------------------------
+                // APPLICATIONS
+                // -------------------------
+
+                document.getElementById(
+                    "totalApplications"
+                ).textContent =
+                    applications.length;
+
+
+                // -------------------------
+                // ACTIVE JOBS
+                // -------------------------
+                //
+                // The current Job entity does
+                // not have an active/inactive
+                // field.
+                //
+                // Therefore all existing jobs
+                // are currently treated as active.
+                // -------------------------
+
+                document.getElementById(
+                    "activeJobs"
+                ).textContent = jobs.length;
+
+
+                // -------------------------
+                // SHORTLISTED
+                // -------------------------
+
+                const shortlisted =
+                    applications.filter(
+                        application => {
+
+                            const status =
+                                (
+                                    application.status ||
+                                    ""
+                                ).toLowerCase();
+
+                            return (
+                                status === "shortlisted" ||
+                                status === "selected"
+                            );
+
+                        }
+                    );
+
+
+                document.getElementById(
+                    "shortlistedApplications"
+                ).textContent =
+                    shortlisted.length;
+
+
+                // -------------------------
+                // RECENT APPLICATIONS
+                // -------------------------
+
+                displayRecentApplications(
+                    applications
+                );
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Dashboard error:",
+                    error
+                );
+
+
+                document.getElementById(
+                    "totalJobs"
+                ).textContent = "0";
+
+
+                document.getElementById(
+                    "totalApplications"
+                ).textContent = "0";
+
+
+                document.getElementById(
+                    "activeJobs"
+                ).textContent = "0";
+
+
+                document.getElementById(
+                    "shortlistedApplications"
+                ).textContent = "0";
+
+
+                document.getElementById(
+                    "recentApplications"
+                ).innerHTML = `
+                    <tr>
+                        <td colspan="3">
+                            Unable to load dashboard data.
+                        </td>
+                    </tr>
+                `;
+
+            });
+
+        }
+
+
+        // =========================
+        // DISPLAY RECENT APPLICATIONS
+        // =========================
+
+        function displayRecentApplications(
+            applications
+        ) {
+
+            const tableBody =
+                document.getElementById(
+                    "recentApplications"
+                );
+
+
+            tableBody.innerHTML = "";
+
+
+            if (
+                !applications ||
+                applications.length === 0
+            ) {
+
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="3">
+                            No applications found.
+                        </td>
+                    </tr>
+                `;
+
+                return;
+
             }
 
-            return response.json();
-        })
-        .then(profile => {
 
-            document.getElementById("profileName").textContent =
-                profile.name || "Not set";
+            // Show latest 5 applications.
+            // Newer records normally have
+            // higher IDs in this project.
 
-            document.getElementById("profileCompany").textContent =
-                profile.company || "Not set";
+            const recentApplications =
+                [...applications]
+                    .sort(
+                        (a, b) =>
+                            (b.id || 0) -
+                            (a.id || 0)
+                    )
+                    .slice(0, 5);
 
-            document.getElementById("profileEmail").textContent =
-                profile.email || "Not set";
-        })
-        .catch(error => {
-            console.error("Error loading profile:", error);
-        });
 
-});
-</script>
+            recentApplications.forEach(
+                application => {
+
+                    const row =
+                        document.createElement("tr");
+
+
+                    const candidateCell =
+                        document.createElement("td");
+
+                    candidateCell.textContent =
+                        application.applicantName ||
+                        "Unknown";
+
+
+                    const jobCell =
+                        document.createElement("td");
+
+                    jobCell.textContent =
+                        application.jobTitle ||
+                        "Unknown";
+
+
+                    const statusCell =
+                        document.createElement("td");
+
+                    statusCell.textContent =
+                        application.status ||
+                        "Pending";
+
+
+                    row.appendChild(
+                        candidateCell
+                    );
+
+                    row.appendChild(
+                        jobCell
+                    );
+
+                    row.appendChild(
+                        statusCell
+                    );
+
+
+                    tableBody.appendChild(row);
+
+                }
+            );
+
+        }
+
+    </script>
+
 </body>
+
 </html>

@@ -9,143 +9,38 @@ body {
     background: #f4f6f9;
 }
 
-.sidebar {
-    position: fixed;
-    width: 230px;
-    height: 100vh;
-    background: #1e293b;
-    padding: 25px 15px;
-}
 
-.sidebar h2 {
-    color: white;
-    text-align: center;
-    margin-bottom: 30px;
-}
+/* =========================
+   SIDEBAR
+========================= */
 
-.sidebar a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 14px;
-    margin: 5px 0;
-    border-radius: 6px;
-}
-
-.sidebar a:hover {
-    background: #2563eb;
-}
-
-.main-content {
-    margin-left: 230px;
-    padding: 40px;
-}
-
-.top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.top p {
-    color: #666;
-    margin-top: 5px;
-}
-
-.post-btn {
-    background: #2563eb;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-}
-
-.job-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.job-card {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.job-card h2 {
-    margin-bottom: 15px;
-}
-
-.job-card p {
-    margin: 9px 0;
-    color: #555;
-}
-
-.status {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 6px 12px;
-    background: #dcfce7;
-    color: #166534;
-    border-radius: 15px;
-    font-size: 14px;
-}
-
-.actions {
-    margin-top: 20px;
-}
-
-.actions button {
-    padding: 9px 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 8px;
-}
-
-.edit-btn {
-    background: #2563eb;
-    color: white;
-}
-
-.delete-btn {
-    background: #dc2626;
-    color: white;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
-}
-
-/* Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
+
     width: 230px;
     height: 100vh;
+
     background: #1f2937;
+
     padding-top: 25px;
 }
 
 .sidebar h2 {
     color: white;
     text-align: center;
+
     margin-bottom: 30px;
 }
 
 .sidebar a {
     display: block;
+
     padding: 15px 25px;
+
     color: white;
+
     text-decoration: none;
 }
 
@@ -154,61 +49,142 @@ body {
     background: #2563eb;
 }
 
-/* Main content */
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
 .main-content {
     margin-left: 230px;
+
     padding: 40px;
 }
 
-.main-content h1 {
+
+/* =========================
+   TOP HEADER
+========================= */
+
+.top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.top h1 {
     color: #1f2937;
-    margin-bottom: 10px;
+
+    margin-bottom: 8px;
 }
 
-.main-content > p {
+.top p {
     color: #6b7280;
-    margin-bottom: 25px;
 }
 
-/* Jobs container */
+
+/* =========================
+   POST JOB BUTTON
+========================= */
+
+.post-btn {
+    display: inline-block;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+}
+
+.post-btn:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================
+   JOB CONTAINER
+========================= */
+
 #jobsContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    grid-template-columns:
+        repeat(2, minmax(300px, 1fr));
+
     gap: 20px;
 }
 
-/* Job card */
+
+/* =========================
+   JOB CARD
+========================= */
+
 .job-card {
     background: white;
+
     padding: 25px;
+
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.1);
 }
 
 .job-card h2 {
     color: #2563eb;
+
     margin-bottom: 15px;
 }
 
 .job-card p {
     margin: 10px 0;
+
     color: #374151;
+
+    line-height: 1.5;
 }
 
 .job-card strong {
     color: #111827;
 }
 
-/* Buttons */
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.actions {
+    margin-top: 20px;
+}
+
+
 .job-card button {
     padding: 9px 18px;
-    margin-top: 15px;
+
     margin-right: 8px;
+
     border: none;
+
     border-radius: 6px;
+
     color: white;
+
     cursor: pointer;
+
+    font-size: 14px;
 }
+
+
+/* EDIT */
 
 .edit-btn {
     background: #2563eb;
@@ -218,6 +194,9 @@ body {
     background: #1d4ed8;
 }
 
+
+/* DELETE */
+
 .delete-btn {
     background: #dc2626;
 }
@@ -226,10 +205,39 @@ body {
     background: #b91c1c;
 }
 
-/* No jobs */
+
+/* =========================
+   NO JOBS
+========================= */
+
 .no-jobs {
     background: white;
+
     padding: 30px;
+
     border-radius: 10px;
+
     color: #6b7280;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 190px;
+    }
+
+    .main-content {
+        margin-left: 190px;
+
+        padding: 25px;
+    }
+
+    #jobsContainer {
+        grid-template-columns: 1fr;
+    }
 }

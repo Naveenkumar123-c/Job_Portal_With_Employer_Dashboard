@@ -8,32 +8,26 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "employer_profiles")
-public class EmployerProfile {
+@Table(name = "candidate_profiles")
+public class CandidateProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private Long userId;
-
-    @Column(nullable = false)
-    private String name;
-
     @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String company;
+    private Long userId;
 
     private String phone;
 
     private String qualification;
 
+    @Column(length = 2000)
     private String skills;
 
-    public EmployerProfile() {
+    private String resume;
+
+    public CandidateProfile() {
     }
 
     public Long getId() {
@@ -50,30 +44,6 @@ public class EmployerProfile {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
     }
 
     public String getPhone() {
@@ -98,5 +68,13 @@ public class EmployerProfile {
 
     public void setSkills(String skills) {
         this.skills = skills;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 }

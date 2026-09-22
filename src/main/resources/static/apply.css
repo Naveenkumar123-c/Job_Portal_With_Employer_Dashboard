@@ -1,0 +1,201 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #222;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 220px;
+    height: 100vh;
+    background: #17243a;
+    padding: 25px 15px;
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    margin: 0 0 35px 0;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 14px 15px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+}
+
+.sidebar a:hover {
+    background: #2d405f;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+    margin-left: 220px;
+    padding: 40px;
+    min-height: 100vh;
+}
+
+.main-content > h1 {
+    max-width: 1000px;
+    margin: 20px auto 25px auto;
+    color: #17243a;
+}
+
+/* =========================
+   JOB DETAILS
+========================= */
+
+#jobDetails {
+    max-width: 1000px;
+    margin: 0 auto 25px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+#jobDetails h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #1d3557;
+}
+
+#jobDetails p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+#jobDetails strong {
+    color: #17243a;
+}
+
+#jobDetails hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin-top: 25px;
+}
+
+/* =========================
+   APPLICATION FORM
+========================= */
+
+#applicationForm {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+#applicationForm label {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 7px;
+}
+
+#applicationForm input,
+#applicationForm textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    background: white;
+}
+
+#applicationForm input:focus,
+#applicationForm textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+#applicationForm textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+#applicationForm button {
+    display: block;
+    margin-top: 25px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#applicationForm button:hover {
+    background: #1d4ed8;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+#message {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 15px;
+    }
+
+    .sidebar a {
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .main-content > h1 {
+        margin: 10px 0 20px 0;
+    }
+
+    #jobDetails,
+    #applicationForm {
+        width: 100%;
+    }
+}

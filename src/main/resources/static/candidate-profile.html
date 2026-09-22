@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Candidate Profile</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f6f9;
+        }
+
+        .navbar {
+            background: #1f2937;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar h2 {
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input:disabled {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .resume-info {
+            margin-top: 10px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 6px;
+            color: #475569;
+        }
+
+        .resume-link {
+            display: none;
+            margin-left: 10px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .resume-link:hover {
+            text-decoration: underline;
+        }
+
+        .success {
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #dcfce7;
+            color: #166534;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .error {
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #fee2e2;
+            color: #b91c1c;
+            border-radius: 6px;
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <h2>Job Portal</h2>
+
+    <div>
+
+        <a href="candidate-dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="browse-jobs.html">
+            Browse Jobs
+        </a>
+
+        <a href="my-applications.html">
+            My Applications
+        </a>
+
+        <a href="candidate-profile.html">
+            My Profile
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>My Profile</h1>
+
+        <p class="subtitle">
+            Manage your candidate profile information.
+        </p>
+
+        <div id="successMessage"
+             class="success">
+        </div>
+
+        <div id="errorMessage"
+             class="error">
+        </div>
+
+        <form id="profileForm">
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    disabled>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    disabled>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone
+                </label>
+
+                <input
+                    type="text"
+                    id="phone"
+                    placeholder="Enter phone number">
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="qualification">
+                    Qualification
+                </label>
+
+                <input
+                    type="text"
+                    id="qualification"
+                    placeholder="Example: B.Tech CSE">
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="skills">
+                    Skills
+                </label>
+
+                <textarea
+                    id="skills"
+                    placeholder="Example: Java, Spring Boot, MySQL, HTML, CSS"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="resume">
+                    Upload Resume
+                </label>
+
+                <input
+                    type="file"
+                    id="resume"
+                    accept=".pdf,.doc,.docx">
+
+                <div class="resume-info">
+                    Allowed files: PDF, DOC, DOCX
+                </div>
+
+                <div class="resume-info">
+
+                    Current resume:
+
+                    <strong id="currentResume">
+                        No resume uploaded
+                    </strong>
+
+                    <a
+                        id="resumeLink"
+                        class="resume-link"
+                        href="/api/candidate-profile/resume"
+                        target="_blank">
+
+                        View Resume
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <button type="submit">
+                Save Profile
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+    const profileForm =
+        document.getElementById("profileForm");
+
+    const nameInput =
+        document.getElementById("name");
+
+    const emailInput =
+        document.getElementById("email");
+
+    const phoneInput =
+        document.getElementById("phone");
+
+    const qualificationInput =
+        document.getElementById("qualification");
+
+    const skillsInput =
+        document.getElementById("skills");
+
+    const resumeInput =
+        document.getElementById("resume");
+
+    const currentResume =
+        document.getElementById("currentResume");
+
+    const resumeLink =
+        document.getElementById("resumeLink");
+
+    const successMessage =
+        document.getElementById("successMessage");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+
+    // =========================
+    // DISPLAY RESUME
+    // =========================
+
+    function displayResume(resume) {
+
+        if (resume) {
+
+            currentResume.textContent =
+                resume;
+
+            resumeLink.style.display =
+                "inline-block";
+
+        } else {
+
+            currentResume.textContent =
+                "No resume uploaded";
+
+            resumeLink.style.display =
+                "none";
+        }
+    }
+
+
+    // =========================
+    // LOAD PROFILE
+    // =========================
+
+    async function loadProfile() {
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/candidate-profile/me"
+                );
+
+            if (response.status === 401) {
+
+                window.location.href =
+                    "/index.html";
+
+                return;
+            }
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Failed to load profile"
+                );
+            }
+
+            const profile =
+                await response.json();
+
+            nameInput.value =
+                profile.name || "";
+
+            emailInput.value =
+                profile.email || "";
+
+            phoneInput.value =
+                profile.phone || "";
+
+            qualificationInput.value =
+                profile.qualification || "";
+
+            skillsInput.value =
+                profile.skills || "";
+
+            displayResume(
+                profile.resume
+            );
+
+        } catch (error) {
+
+            errorMessage.textContent =
+                error.message;
+
+            errorMessage.style.display =
+                "block";
+        }
+    }
+
+
+    // =========================
+    // SAVE PROFILE
+    // =========================
+
+    profileForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+            successMessage.style.display =
+                "none";
+
+            errorMessage.style.display =
+                "none";
+
+            const formData =
+                new FormData();
+
+            formData.append(
+                "phone",
+                phoneInput.value
+            );
+
+            formData.append(
+                "qualification",
+                qualificationInput.value
+            );
+
+            formData.append(
+                "skills",
+                skillsInput.value
+            );
+
+            if (resumeInput.files.length > 0) {
+
+                formData.append(
+                    "resume",
+                    resumeInput.files[0]
+                );
+            }
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/candidate-profile/me",
+                        {
+                            method: "PUT",
+                            body: formData
+                        }
+                    );
+
+                if (response.status === 401) {
+
+                    window.location.href =
+                        "/index.html";
+
+                    return;
+                }
+
+                const result =
+                    await response.text();
+
+                if (!response.ok) {
+
+                    throw new Error(result);
+                }
+
+                const profile =
+                    JSON.parse(result);
+
+                displayResume(
+                    profile.resume
+                );
+
+                successMessage.textContent =
+                    "Profile saved successfully.";
+
+                successMessage.style.display =
+                    "block";
+
+                resumeInput.value = "";
+
+            } catch (error) {
+
+                errorMessage.textContent =
+                    error.message;
+
+                errorMessage.style.display =
+                    "block";
+            }
+
+        }
+    );
+
+
+    // Load profile
+    loadProfile();
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job Portal - Browse Jobs</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <h2>Job Portal</h2>
+
+        <a href="/candidate-dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="/jobs.html" class="active">
+            Browse Jobs
+        </a>
+
+        <a href="/applications.html">
+            My Applications
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <h1>Browse Jobs</h1>
+
+        <p>
+            Find jobs that match your skills and experience.
+        </p>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by job title, company or skills">
+
+            <button onclick="searchJobs()">
+                Search
+            </button>
+
+        </div>
+
+
+        <div id="jobsContainer">
+
+            <p>Loading jobs...</p>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="/jobs.js"></script>
+
+</body>
+
+</html>

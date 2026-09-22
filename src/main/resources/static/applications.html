@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Applications</title>
+
+    <title>Applications - Job Portal</title>
+
     <link rel="stylesheet" href="applications.css">
 </head>
 
@@ -13,22 +15,8 @@
 
     <h1>Job Applications</h1>
 
-    <div class="application-card">
-        <h2>Rahul Kumar</h2>
-
-        <p><b>Email:</b> rahul@gmail.com</p>
-        <p><b>Job:</b> Java Developer</p>
-        <p><b>Experience:</b> Fresher</p>
-
-        <button onclick="updateStatus(this, 'Selected')">
-            Select
-        </button>
-
-        <button onclick="updateStatus(this, 'Rejected')">
-            Reject
-        </button>
-
-        <p class="status">Status: Pending</p>
+    <div id="applicationsContainer">
+        <p>Loading applications...</p>
     </div>
 
     <a href="employer-dashboard.html">

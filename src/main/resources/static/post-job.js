@@ -7,45 +7,63 @@ document.addEventListener("DOMContentLoaded", function () {
 
         event.preventDefault();
 
-        const jobTitle = document.getElementById("jobTitle").value.trim();
-        const companyName = document.getElementById("companyName").value.trim();
-        const location = document.getElementById("location").value.trim();
-        const salary = document.getElementById("salary").value.trim();
-        const skills = document.getElementById("skills").value.trim();
-        const description = document.getElementById("description").value.trim();
+        const job = {
+            title: document.getElementById("jobTitle").value.trim(),
+            company: document.getElementById("companyName").value.trim(),
+            location: document.getElementById("location").value.trim(),
+            type: document.getElementById("type").value.trim(),
+            salary: document.getElementById("salary").value.trim(),
+            skills: document.getElementById("skills").value.trim(),
+            description: document.getElementById("description").value.trim()
+        };
 
         if (
-            jobTitle === "" ||
-            companyName === "" ||
-            location === "" ||
-            salary === "" ||
-            skills === "" ||
-            description === ""
+            job.title === "" ||
+            job.company === "" ||
+            job.location === "" ||
+            job.type === "" ||
+            job.salary === "" ||
+            job.skills === "" ||
+            job.description === ""
         ) {
             message.textContent = "Please fill all required fields.";
             message.style.color = "red";
             return;
         }
 
-        const job = {
-            title: jobTitle,
-            company: companyName,
-            location: location,
-            salary: salary,
-            skills: skills,
-            description: description
-        };
+        fetch("/api/jobs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(job)
+        })
+        .then(response => {
 
-        let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+            if (!response.ok) {
+                throw new Error("Failed to save job");
+            }
 
-        jobs.push(job);
+            return response.json();
+        })
+        .then(data => {
 
-        localStorage.setItem("jobs", JSON.stringify(jobs));
+            console.log("Saved job:", data);
 
-        message.textContent = "Job posted successfully!";
-        message.style.color = "green";
+            message.textContent = "Job posted successfully!";
+            message.style.color = "green";
 
-        form.reset();
+            form.reset();
+        })
+        .catch(error => {
+
+            console.error("Error:", error);
+
+            message.textContent =
+                "Job could not be saved. Check the backend.";
+
+            message.style.color = "red";
+        });
 
     });
 

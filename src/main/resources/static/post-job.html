@@ -1,126 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Post a Job</title>
+    <title>Post Job</title>
 
-    <link rel="stylesheet" href="post-job.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
 
-<!-- Sidebar -->
 <div class="sidebar">
 
     <h2>Job Portal</h2>
 
-    <a href="employer-dashboard.html">Dashboard</a>
-    <a href="post-job.html" class="active">Post Job</a>
-    <a href="my-jobs.html">My Jobs</a>
-    <a href="applications.html">Applications</a>
-    <a href="profile.html">Profile</a>
-    <a href="login.html">Logout</a>
+    <a href="employer-dashboard.html">
+        Dashboard
+    </a>
+
+    <a href="post-job.html" class="active">
+        Post Job
+    </a>
+
+    <a href="my-jobs.html">
+        My Jobs
+    </a>
+
+    <a href="applications.html">
+        Applications
+    </a>
+
+    <a href="profile.html">
+        Profile
+    </a>
+
+    <a href="index.html">
+        Logout
+    </a>
 
 </div>
 
 
-<!-- Main Content -->
 <div class="main-content">
 
     <h1>Post a New Job</h1>
 
-    <p>Create a job opportunity for candidates.</p>
+    <p>Create a job vacancy for candidates.</p>
 
 
-    <!-- Job Form -->
-    <div class="job-card">
+    <form id="jobForm">
 
-        <h2>Job Details</h2>
-
-        <form id="jobForm">
-
-            <label for="jobTitle">Job Title</label>
+        <div>
+            <label>Job Title</label>
 
             <input
                 type="text"
-                id="jobTitle"
-                name="jobTitle"
-                placeholder="Example: Java Developer"
-                required
-            >
+                id="title"
+                name="title"
+                placeholder="Java Developer"
+                required>
+        </div>
 
 
-            <label for="companyName">Company Name</label>
+        <div>
+            <label>Company</label>
 
             <input
                 type="text"
-                id="companyName"
-                name="companyName"
-                placeholder="Example: ACN"
-                required
-            >
+                id="company"
+                name="company"
+                placeholder="Company name"
+                required>
+        </div>
 
 
-            <label for="location">Location</label>
+        <div>
+            <label>Location</label>
 
             <input
                 type="text"
                 id="location"
                 name="location"
-                placeholder="Example: Chennai"
-                required
-            >
+                placeholder="Chennai"
+                required>
+        </div>
 
 
-            <label for="salary">Salary</label>
+        <div>
+            <label>Job Type</label>
+
+            <select id="type" name="type" required>
+
+                <option value="">
+                    Select Job Type
+                </option>
+
+                <option value="Full Time">
+                    Full Time
+                </option>
+
+                <option value="Part Time">
+                    Part Time
+                </option>
+
+                <option value="Internship">
+                    Internship
+                </option>
+
+                <option value="Contract">
+                    Contract
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div>
+            <label>Salary</label>
 
             <input
                 type="text"
                 id="salary"
                 name="salary"
-                placeholder="Example: ₹4 - ₹6 LPA"
-                required
-            >
+                placeholder="?5 LPA">
+        </div>
 
 
-            <label for="skills">Skills</label>
+        <div>
+            <label>Skills</label>
 
             <input
                 type="text"
                 id="skills"
                 name="skills"
-                placeholder="Example: Java, Spring Boot, MySQL"
-                required
-            >
+                placeholder="Java, Spring Boot, MySQL">
+        </div>
 
 
-            <label for="description">Job Description</label>
+        <div>
+            <label>Job Description</label>
 
             <textarea
                 id="description"
                 name="description"
+                rows="8"
                 placeholder="Enter job description"
-                required
-            ></textarea>
+                required></textarea>
+        </div>
 
 
-            <button type="submit">
-                Post Job
-            </button>
-
-        </form>
-
+        <button type="submit">
+            Post Job
+        </button>
 
         <p id="message"></p>
 
-    </div>
+    </form>
 
 </div>
 
 
-<script src="post-job.js"></script>
+<script>
+
+document
+    .getElementById("jobForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const job = {
+
+            title:
+                document.getElementById("title").value.trim(),
+
+            company:
+                document.getElementById("company").value.trim(),
+
+            location:
+                document.getElementById("location").value.trim(),
+
+            type:
+                document.getElementById("type").value,
+
+            salary:
+                document.getElementById("salary").value.trim(),
+
+            skills:
+                document.getElementById("skills").value.trim(),
+
+            description:
+                document.getElementById("description").value.trim()
+
+        };
+
+
+        const message =
+            document.getElementById("message");
+
+
+        message.textContent = "Posting job...";
+
+
+        fetch("/api/jobs", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(job)
+
+        })
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Failed to post job");
+            }
+
+            return response.json();
+
+        })
+
+        .then(savedJob => {
+
+            message.textContent =
+                "Job posted successfully!";
+
+
+            document
+                .getElementById("jobForm")
+                .reset();
+
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "my-jobs.html";
+
+            }, 1000);
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
+
+            message.textContent =
+                "Unable to post job.";
+
+        });
+
+    });
+
+</script>
 
 </body>
+
 </html>

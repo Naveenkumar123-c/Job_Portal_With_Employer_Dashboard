@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Browse Jobs</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        .header {
+            background: #1f2937;
+            color: white;
+            padding: 20px 40px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .job-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .job-card h2 {
+            margin-top: 0;
+            color: #2563eb;
+        }
+
+        .job-card p {
+            margin: 8px 0;
+            color: #374151;
+        }
+
+        .apply-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .apply-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .no-jobs {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            margin: 80px auto;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            background: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .cancel-btn {
+            padding: 10px 20px;
+            background: #6b7280;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Browse Jobs</h1>
+</div>
+
+<div class="container">
+
+    <div id="jobsContainer">
+        <p>Loading jobs...</p>
+    </div>
+
+</div>
+
+
+<!-- Apply Modal -->
+
+<div id="applyModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>Apply for Job</h2>
+
+        <p>
+            <strong>Job:</strong>
+            <span id="selectedJobTitle"></span>
+        </p>
+
+        <form id="applicationForm">
+
+            <div class="form-group">
+                <label for="applicantName">Applicant Name</label>
+                <input
+                    type="text"
+                    id="applicantName"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Experience</label>
+                <textarea
+                    id="experience"
+                    placeholder="Example: 2 years Java development experience"
+                ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Submit Application
+            </button>
+
+            <button
+                type="button"
+                class="cancel-btn"
+                onclick="closeApplyForm()">
+                Cancel
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let selectedJobTitle = "";
+
+
+/* Load all jobs */
+
+function loadJobs() {
+
+    fetch("/api/jobs")
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Failed to load jobs");
+            }
+
+            return response.json();
+
+        })
+
+        .then(jobs => {
+
+            const container =
+                document.getElementById("jobsContainer");
+
+            container.innerHTML = "";
+
+            if (jobs.length === 0) {
+
+                container.innerHTML =
+                    '<div class="no-jobs">No jobs available.</div>';
+
+                return;
+            }
+
+
+            jobs.forEach(job => {
+
+                const card =
+                    document.createElement("div");
+
+                card.className = "job-card";
+
+                card.innerHTML = `
+
+                    <h2>${job.title || ""}</h2>
+
+                    <p>
+                        <strong>Company:</strong>
+                        ${job.company || ""}
+                    </p>
+
+                    <p>
+                        <strong>Location:</strong>
+                        ${job.location || ""}
+                    </p>
+
+                    <p>
+                        <strong>Job Type:</strong>
+                        ${job.type || ""}
+                    </p>
+
+                    <p>
+                        <strong>Salary:</strong>
+                        ${job.salary || ""}
+                    </p>
+
+                    <p>
+                        <strong>Skills:</strong>
+                        ${job.skills || ""}
+                    </p>
+
+                    <p>
+                        <strong>Description:</strong>
+                        ${job.description || ""}
+                    </p>
+
+                    <button
+                        class="apply-btn"
+                        onclick="openApplyForm('${escapeQuotes(job.title || "")}')">
+
+                        Apply Now
+
+                    </button>
+                `;
+
+                container.appendChild(card);
+
+            });
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
+
+            document.getElementById("jobsContainer").innerHTML =
+                '<div class="no-jobs">Unable to load jobs.</div>';
+
+        });
+}
+
+
+/* Open application form */
+
+function openApplyForm(jobTitle) {
+
+    selectedJobTitle = jobTitle;
+
+    document.getElementById("selectedJobTitle").textContent =
+        jobTitle;
+
+    document.getElementById("applyModal").style.display =
+        "block";
+}
+
+
+/* Close application form */
+
+function closeApplyForm() {
+
+    document.getElementById("applyModal").style.display =
+        "none";
+
+    document.getElementById("applicationForm").reset();
+}
+
+
+/* Submit application */
+
+document.getElementById("applicationForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const application = {
+
+            applicantName:
+                document.getElementById("applicantName").value,
+
+            email:
+                document.getElementById("email").value,
+
+            jobTitle:
+                selectedJobTitle,
+
+            experience:
+                document.getElementById("experience").value,
+
+            status:
+                "Pending"
+        };
+
+
+        fetch("/api/applications", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(application)
+
+        })
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Application failed");
+            }
+
+            return response.json();
+
+        })
+
+        .then(data => {
+
+            alert("Application submitted successfully!");
+
+            closeApplyForm();
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
+
+            alert("Application could not be submitted.");
+
+        });
+
+    });
+
+
+/* Escape quotes in job title */
+
+function escapeQuotes(text) {
+
+    return text
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
+
+}
+
+
+/* Load jobs when page opens */
+
+loadJobs();
+
+</script>
+
+</body>
+</html>
