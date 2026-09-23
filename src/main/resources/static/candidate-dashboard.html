@@ -2,12 +2,16 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Candidate Dashboard | Job Portal</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -28,6 +32,7 @@
             position: fixed;
             left: 0;
             top: 0;
+
             width: 250px;
             height: 100vh;
 
@@ -42,7 +47,8 @@
             display: flex;
             flex-direction: column;
 
-            box-shadow: 4px 0 20px rgba(15, 23, 42, 0.12);
+            box-shadow:
+                4px 0 20px rgba(15, 23, 42, 0.12);
 
             z-index: 100;
         }
@@ -68,6 +74,7 @@
             justify-content: center;
 
             color: white;
+
             font-size: 21px;
             font-weight: 800;
         }
@@ -112,20 +119,26 @@
 
         .sidebar a:hover {
             background: rgba(255, 255, 255, 0.10);
+
             color: white;
+
             transform: translateX(2px);
         }
 
         .sidebar a.active {
             background: rgba(255, 255, 255, 0.16);
+
             color: white;
+
             box-shadow:
                 inset 3px 0 0 white;
         }
 
         .nav-icon {
             width: 22px;
+
             text-align: center;
+
             font-size: 17px;
         }
 
@@ -142,12 +155,14 @@
         }
 
         /* =========================
-           MAIN
+           MAIN CONTENT
            ========================= */
 
         .main-content {
             margin-left: 250px;
+
             padding: 32px 38px 50px;
+
             min-height: 100vh;
         }
 
@@ -157,7 +172,9 @@
 
         .top-header {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
             margin-bottom: 28px;
@@ -165,23 +182,29 @@
 
         .header-title h1 {
             font-size: 29px;
+
             color: #111827;
+
             margin-bottom: 6px;
         }
 
         .header-title p {
             color: #6b7280;
+
             font-size: 14px;
         }
 
         .header-action {
             display: inline-flex;
+
             align-items: center;
+
             gap: 8px;
 
             padding: 12px 18px;
 
             background: #2563eb;
+
             color: white;
 
             text-decoration: none;
@@ -189,15 +212,18 @@
             border-radius: 9px;
 
             font-size: 14px;
+
             font-weight: 600;
 
-            box-shadow: 0 5px 14px rgba(37, 99, 235, 0.22);
+            box-shadow:
+                0 5px 14px rgba(37, 99, 235, 0.22);
 
             transition: 0.2s ease;
         }
 
         .header-action:hover {
             background: #1d4ed8;
+
             transform: translateY(-1px);
         }
 
@@ -207,6 +233,7 @@
 
         .welcome {
             position: relative;
+
             overflow: hidden;
 
             background: linear-gradient(
@@ -230,6 +257,7 @@
 
         .welcome::after {
             content: "";
+
             position: absolute;
 
             width: 190px;
@@ -245,6 +273,7 @@
 
         .welcome h2 {
             font-size: 23px;
+
             margin-bottom: 9px;
         }
 
@@ -254,6 +283,7 @@
             color: #dbeafe;
 
             font-size: 14px;
+
             line-height: 1.6;
 
             margin-bottom: 20px;
@@ -261,12 +291,15 @@
 
         .browse-button {
             display: inline-flex;
+
             align-items: center;
+
             gap: 8px;
 
             padding: 11px 17px;
 
             background: white;
+
             color: #1d4ed8;
 
             border-radius: 8px;
@@ -274,6 +307,7 @@
             text-decoration: none;
 
             font-size: 13px;
+
             font-weight: 700;
 
             transition: 0.2s ease;
@@ -281,7 +315,9 @@
 
         .browse-button:hover {
             transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.12);
         }
 
         /* =========================
@@ -292,6 +328,7 @@
             display: none;
 
             background: #fef2f2;
+
             border: 1px solid #fecaca;
 
             color: #b91c1c;
@@ -311,7 +348,9 @@
 
         .section-title {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
             margin-bottom: 14px;
@@ -319,16 +358,18 @@
 
         .section-title h2 {
             font-size: 18px;
+
             color: #111827;
         }
 
         .section-title span {
             color: #9ca3af;
+
             font-size: 12px;
         }
 
         /* =========================
-           STATS
+           STATISTICS
            ========================= */
 
         .stats {
@@ -366,7 +407,9 @@
 
         .stat-top {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
             margin-bottom: 18px;
@@ -379,23 +422,29 @@
             border-radius: 10px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             font-size: 18px;
 
             background: #eff6ff;
+
             color: #2563eb;
         }
 
         .stat-label {
             color: #6b7280;
+
             font-size: 13px;
+
             font-weight: 500;
         }
 
         .stat-number {
             font-size: 30px;
+
             font-weight: 750;
 
             color: #111827;
@@ -433,12 +482,15 @@
 
         .card-header h2 {
             font-size: 18px;
+
             color: #111827;
+
             margin-bottom: 5px;
         }
 
         .card-header p {
             color: #9ca3af;
+
             font-size: 13px;
         }
 
@@ -457,7 +509,9 @@
 
         .action {
             display: flex;
+
             align-items: center;
+
             gap: 12px;
 
             padding: 15px;
@@ -475,7 +529,9 @@
 
         .action:hover {
             border-color: #93c5fd;
+
             background: #f8fbff;
+
             transform: translateY(-1px);
         }
 
@@ -486,10 +542,13 @@
             flex-shrink: 0;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             background: #eff6ff;
+
             color: #2563eb;
 
             border-radius: 9px;
@@ -499,11 +558,13 @@
 
         .action h3 {
             font-size: 13px;
+
             margin-bottom: 3px;
         }
 
         .action p {
             color: #9ca3af;
+
             font-size: 11px;
         }
 
@@ -513,13 +574,17 @@
 
         .info-list {
             display: flex;
+
             flex-direction: column;
+
             gap: 13px;
         }
 
         .info-item {
             display: flex;
+
             align-items: center;
+
             gap: 12px;
 
             padding: 12px;
@@ -534,12 +599,15 @@
             height: 34px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             border-radius: 8px;
 
             background: #dbeafe;
+
             color: #2563eb;
         }
 
@@ -555,6 +623,7 @@
 
         .info-item span {
             color: #9ca3af;
+
             font-size: 11px;
         }
 
@@ -572,6 +641,7 @@
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
+
         }
 
         @media (max-width: 760px) {
@@ -580,6 +650,7 @@
                 position: relative;
 
                 width: 100%;
+
                 height: auto;
 
                 padding: 15px;
@@ -617,6 +688,7 @@
             .header-title h1 {
                 font-size: 24px;
             }
+
         }
 
         @media (max-width: 520px) {
@@ -640,18 +712,23 @@
             .welcome h2 {
                 font-size: 20px;
             }
+
         }
+
     </style>
 
 </head>
 
+
 <body>
+
 
     <!-- =========================
          SIDEBAR
          ========================= -->
 
     <aside class="sidebar">
+
 
         <div class="brand">
 
@@ -660,56 +737,101 @@
             </div>
 
             <div class="brand-text">
-                <h2>Job Portal</h2>
-                <span>Candidate Panel</span>
+
+                <h2>
+                    Job Portal
+                </h2>
+
+                <span>
+                    Candidate Panel
+                </span>
+
             </div>
 
         </div>
 
+
         <nav class="sidebar-nav">
+
 
             <a href="candidate-dashboard.html"
                class="active">
 
-                <span class="nav-icon">⌂</span>
-                <span>Dashboard</span>
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
 
             </a>
+
 
             <a href="browse-jobs.html">
 
-                <span class="nav-icon">⌕</span>
-                <span>Browse Jobs</span>
+                <span class="nav-icon">
+                    ⌕
+                </span>
+
+                <span>
+                    Browse Jobs
+                </span>
 
             </a>
+
 
             <a href="my-applications.html">
 
-                <span class="nav-icon">▣</span>
-                <span>My Applications</span>
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                <span>
+                    My Applications
+                </span>
 
             </a>
+
 
             <a href="candidate-profile.html">
 
-                <span class="nav-icon">◉</span>
-                <span>My Profile</span>
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                <span>
+                    My Profile
+                </span>
 
             </a>
+
 
         </nav>
 
+
         <div class="sidebar-bottom">
 
-            <a href="/logout"
-               class="logout">
 
-                <span class="nav-icon">↪</span>
-                <span>Logout</span>
+            <!-- LOGOUT -->
+
+            <a href="/logout"
+               class="logout"
+               onclick="handleLogout(event)">
+
+                <span class="nav-icon">
+                    ↪
+                </span>
+
+                <span>
+                    Logout
+                </span>
 
             </a>
 
+
         </div>
+
 
     </aside>
 
@@ -720,13 +842,17 @@
 
     <main class="main-content">
 
+
         <!-- HEADER -->
 
         <header class="top-header">
 
+
             <div class="header-title">
 
-                <h1>Candidate Dashboard</h1>
+                <h1>
+                    Candidate Dashboard
+                </h1>
 
                 <p>
                     Track your applications and discover your next career opportunity.
@@ -734,12 +860,14 @@
 
             </div>
 
+
             <a href="browse-jobs.html"
                class="header-action">
 
                 + Find Jobs
 
             </a>
+
 
         </header>
 
@@ -750,12 +878,17 @@
 
         <section class="welcome">
 
-            <h2>Welcome back! 👋</h2>
+
+            <h2>
+                Welcome back! 👋
+            </h2>
+
 
             <p>
                 Explore the latest job opportunities, keep track of your applications,
                 and make sure your profile is ready for employers.
             </p>
+
 
             <a href="browse-jobs.html"
                class="browse-button">
@@ -763,6 +896,7 @@
                 Browse Available Jobs →
 
             </a>
+
 
         </section>
 
@@ -775,18 +909,26 @@
 
 
         <!-- =========================
-             APPLICATION STATISTICS
+             APPLICATION OVERVIEW
              ========================= -->
 
         <div class="section-title">
 
-            <h2>Application Overview</h2>
+            <h2>
+                Application Overview
+            </h2>
 
-            <span>Updated automatically</span>
+            <span>
+                Updated automatically
+            </span>
 
         </div>
 
+
         <section class="stats">
+
+
+            <!-- TOTAL -->
 
             <div class="stat-card">
 
@@ -802,6 +944,7 @@
 
                 </div>
 
+
                 <div id="totalApplications"
                      class="stat-number">
 
@@ -811,6 +954,8 @@
 
             </div>
 
+
+            <!-- PENDING -->
 
             <div class="stat-card">
 
@@ -826,6 +971,7 @@
 
                 </div>
 
+
                 <div id="pendingApplications"
                      class="stat-number">
 
@@ -835,6 +981,8 @@
 
             </div>
 
+
+            <!-- SELECTED -->
 
             <div class="stat-card">
 
@@ -850,6 +998,7 @@
 
                 </div>
 
+
                 <div id="selectedApplications"
                      class="stat-number">
 
@@ -859,6 +1008,8 @@
 
             </div>
 
+
+            <!-- REJECTED -->
 
             <div class="stat-card">
 
@@ -874,6 +1025,7 @@
 
                 </div>
 
+
                 <div id="rejectedApplications"
                      class="stat-number">
 
@@ -883,22 +1035,27 @@
 
             </div>
 
+
         </section>
 
 
         <!-- =========================
-             LOWER CARDS
+             LOWER CONTENT
              ========================= -->
 
         <section class="dashboard-grid">
+
 
             <!-- QUICK ACTIONS -->
 
             <div class="card">
 
+
                 <div class="card-header">
 
-                    <h2>Quick Actions</h2>
+                    <h2>
+                        Quick Actions
+                    </h2>
 
                     <p>
                         Manage your job search from here.
@@ -906,7 +1063,9 @@
 
                 </div>
 
+
                 <div class="quick-actions">
+
 
                     <a href="browse-jobs.html"
                        class="action">
@@ -917,9 +1076,13 @@
 
                         <div>
 
-                            <h3>Browse Jobs</h3>
+                            <h3>
+                                Browse Jobs
+                            </h3>
 
-                            <p>Find new opportunities</p>
+                            <p>
+                                Find new opportunities
+                            </p>
 
                         </div>
 
@@ -935,9 +1098,13 @@
 
                         <div>
 
-                            <h3>My Applications</h3>
+                            <h3>
+                                My Applications
+                            </h3>
 
-                            <p>Track your applications</p>
+                            <p>
+                                Track your applications
+                            </p>
 
                         </div>
 
@@ -953,9 +1120,13 @@
 
                         <div>
 
-                            <h3>My Profile</h3>
+                            <h3>
+                                My Profile
+                            </h3>
 
-                            <p>Update your information</p>
+                            <p>
+                                Update your information
+                            </p>
 
                         </div>
 
@@ -971,26 +1142,35 @@
 
                         <div>
 
-                            <h3>Apply for Jobs</h3>
+                            <h3>
+                                Apply for Jobs
+                            </h3>
 
-                            <p>Take the next step</p>
+                            <p>
+                                Take the next step
+                            </p>
 
                         </div>
 
                     </a>
 
+
                 </div>
+
 
             </div>
 
 
-            <!-- CAREER INFO -->
+            <!-- JOB SEARCH -->
 
             <div class="card">
 
+
                 <div class="card-header">
 
-                    <h2>Job Search</h2>
+                    <h2>
+                        Job Search
+                    </h2>
 
                     <p>
                         Keep your profile ready for employers.
@@ -998,7 +1178,9 @@
 
                 </div>
 
+
                 <div class="info-list">
+
 
                     <div class="info-item">
 
@@ -1008,7 +1190,9 @@
 
                         <div>
 
-                            <strong>Discover Opportunities</strong>
+                            <strong>
+                                Discover Opportunities
+                            </strong>
 
                             <span>
                                 Browse available jobs
@@ -1027,7 +1211,9 @@
 
                         <div>
 
-                            <strong>Track Applications</strong>
+                            <strong>
+                                Track Applications
+                            </strong>
 
                             <span>
                                 Monitor application status
@@ -1046,7 +1232,9 @@
 
                         <div>
 
-                            <strong>Complete Your Profile</strong>
+                            <strong>
+                                Complete Your Profile
+                            </strong>
 
                             <span>
                                 Help employers learn about you
@@ -1065,7 +1253,9 @@
 
                         <div>
 
-                            <strong>Stay Updated</strong>
+                            <strong>
+                                Stay Updated
+                            </strong>
 
                             <span>
                                 Check your applications regularly
@@ -1075,11 +1265,15 @@
 
                     </div>
 
+
                 </div>
+
 
             </div>
 
+
         </section>
+
 
     </main>
 
@@ -1090,27 +1284,91 @@
 
     <script>
 
+
+        /*
+         * LOGOUT
+         *
+         * Sends the user to the backend logout endpoint.
+         * After logout, the user is returned to index.html.
+         */
+
+        async function handleLogout(event) {
+
+            event.preventDefault();
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/logout",
+                        {
+                            method: "GET",
+                            credentials: "same-origin"
+                        }
+                    );
+
+
+                /*
+                 * Regardless of the response,
+                 * return the user to the login page.
+                 */
+
+                window.location.href =
+                    "index.html";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+
+                /*
+                 * If the logout request fails,
+                 * still return to the login page.
+                 */
+
+                window.location.href =
+                    "index.html";
+
+            }
+
+        }
+
+
+        /*
+         * LOAD APPLICATION STATISTICS
+         */
+
         async function loadDashboardStats() {
+
 
             const totalElement =
                 document.getElementById(
                     "totalApplications"
                 );
 
+
             const pendingElement =
                 document.getElementById(
                     "pendingApplications"
                 );
+
 
             const selectedElement =
                 document.getElementById(
                     "selectedApplications"
                 );
 
+
             const rejectedElement =
                 document.getElementById(
                     "rejectedApplications"
                 );
+
 
             const errorMessage =
                 document.getElementById(
@@ -1119,6 +1377,7 @@
 
 
             try {
+
 
                 const response =
                     await fetch(
@@ -1131,8 +1390,7 @@
 
 
                 /*
-                 * If the session has expired,
-                 * send the user to the login page.
+                 * SESSION EXPIRED
                  */
 
                 if (response.status === 401) {
@@ -1145,6 +1403,10 @@
                 }
 
 
+                /*
+                 * OTHER SERVER ERROR
+                 */
+
                 if (!response.ok) {
 
                     throw new Error(
@@ -1153,6 +1415,10 @@
 
                 }
 
+
+                /*
+                 * READ APPLICATIONS
+                 */
 
                 const applications =
                     await response.json();
@@ -1178,11 +1444,12 @@
 
 
                 /*
-                 * COUNT APPLICATION STATUSES
+                 * COUNT STATUSES
                  */
 
                 applications.forEach(
                     application => {
+
 
                         const status =
                             (
@@ -1193,21 +1460,27 @@
                             .toLowerCase();
 
 
-                        if (status === "pending") {
+                        if (
+                            status === "pending"
+                        ) {
 
                             pendingCount++;
 
                         }
 
 
-                        if (status === "selected") {
+                        if (
+                            status === "selected"
+                        ) {
 
                             selectedCount++;
 
                         }
 
 
-                        if (status === "rejected") {
+                        if (
+                            status === "rejected"
+                        ) {
 
                             rejectedCount++;
 
@@ -1224,21 +1497,30 @@
                 pendingElement.textContent =
                     pendingCount;
 
+
                 selectedElement.textContent =
                     selectedCount;
+
 
                 rejectedElement.textContent =
                     rejectedCount;
 
+
             } catch (error) {
 
-                console.error(error);
+
+                console.error(
+                    error
+                );
+
 
                 errorMessage.textContent =
                     "Unable to load application statistics.";
 
+
                 errorMessage.style.display =
                     "block";
+
 
             }
 
@@ -1247,11 +1529,14 @@
 
         /*
          * LOAD DASHBOARD DATA
+         * WHEN PAGE OPENS
          */
 
         loadDashboardStats();
 
+
     </script>
+
 
 </body>
 
