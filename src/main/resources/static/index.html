@@ -5,278 +5,964 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Job Portal - Login</title>
 
     <style>
 
+        /* =========================
+           Global
+           ========================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
         body {
             min-height: 100vh;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-            background: #f4f6f9;
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a 0%,
+                    #172554 45%,
+                    #2563eb 100%
+                );
+
+            color: #17243a;
         }
 
-        .login-container {
 
-            width: 400px;
+        /* =========================
+           Main Page
+           ========================= */
+
+        .page-wrapper {
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+
+        /* =========================
+           Login Layout
+           ========================= */
+
+        .login-layout {
+            width: 100%;
+
+            max-width: 1100px;
+
+            min-height: 650px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
 
             background: white;
 
-            padding: 35px;
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* =========================
+           Left Panel
+           ========================= */
+
+        .welcome-panel {
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            padding: 60px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #172554,
+                    #1d4ed8
+                );
+
+            color: white;
+        }
+
+
+        .welcome-panel::before {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            top: -100px;
+
+            right: -80px;
+        }
+
+
+        .welcome-panel::after {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+
+            height: 220px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.06);
+
+            bottom: -80px;
+
+            left: -70px;
+        }
+
+
+        .brand {
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 45px;
+        }
+
+
+        .brand-icon {
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(255, 255, 255, 0.15);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.2);
 
             border-radius: 12px;
 
-            box-shadow:
-                0 4px 15px rgba(0, 0, 0, 0.12);
+            font-size: 25px;
         }
 
-        h1 {
 
-            text-align: center;
-
-            color: #1f2937;
-
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-
-            text-align: center;
-
-            color: #6b7280;
-
-            margin-bottom: 25px;
-        }
-
-        .form-group {
-
-            margin-bottom: 20px;
-        }
-
-        label {
-
-            display: block;
-
-            margin-bottom: 7px;
-
-            color: #374151;
+        .brand-name {
+            font-size: 22px;
 
             font-weight: bold;
         }
 
-        input,
-        select {
 
+        .welcome-content {
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .welcome-content .eyebrow {
+            display: inline-block;
+
+            padding: 7px 12px;
+
+            margin-bottom: 18px;
+
+            background:
+                rgba(255, 255, 255, 0.12);
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 0.8px;
+
+            text-transform: uppercase;
+        }
+
+
+        .welcome-content h1 {
+            font-size: 44px;
+
+            line-height: 1.15;
+
+            margin-bottom: 20px;
+        }
+
+
+        .welcome-content h1 span {
+            color: #bfdbfe;
+        }
+
+
+        .welcome-content > p {
+            max-width: 450px;
+
+            color: #dbeafe;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* =========================
+           Feature Items
+           ========================= */
+
+        .features {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 16px;
+        }
+
+
+        .feature {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+
+        .feature-icon {
+            width: 36px;
+
+            height: 36px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(255, 255, 255, 0.12);
+
+            border-radius: 9px;
+
+            font-size: 17px;
+        }
+
+
+        .feature span {
+            color: #eff6ff;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           Right Login Panel
+           ========================= */
+
+        .login-panel {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 55px;
+        }
+
+
+        .login-container {
             width: 100%;
 
-            padding: 12px;
+            max-width: 420px;
+        }
 
-            border: 1px solid #cbd5e1;
 
-            border-radius: 6px;
+        .login-heading {
+            margin-bottom: 30px;
+        }
+
+
+        .login-heading h2 {
+            color: #17243a;
+
+            font-size: 31px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .login-heading p {
+            color: #64748b;
 
             font-size: 15px;
         }
 
-        input:focus,
-        select:focus {
+
+        /* =========================
+           Messages
+           ========================= */
+
+        .message,
+        .error {
+            padding: 12px 14px;
+
+            border-radius: 8px;
+
+            text-align: left;
+
+            margin-bottom: 20px;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        .message {
+            background: #dcfce7;
+
+            color: #166534;
+
+            border:
+                1px solid #bbf7d0;
+        }
+
+
+        .error {
+            background: #fee2e2;
+
+            color: #b91c1c;
+
+            border:
+                1px solid #fecaca;
+        }
+
+
+        /* =========================
+           Form
+           ========================= */
+
+        .form-group {
+            margin-bottom: 21px;
+        }
+
+
+        label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #334155;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .input-wrapper {
+            position: relative;
+        }
+
+
+        .input-icon {
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #94a3b8;
+
+            font-size: 16px;
+
+            pointer-events: none;
+        }
+
+
+        input,
+        select {
+            width: 100%;
+
+            height: 48px;
+
+            padding:
+                0 14px 0 42px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            background: #f8fafc;
+
+            color: #17243a;
+
+            font-size: 15px;
 
             outline: none;
 
-            border-color: #2563eb;
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s,
+                background 0.2s;
         }
 
-        button {
 
+        select {
+            padding-left: 14px;
+
+            cursor: pointer;
+        }
+
+
+        input:focus,
+        select:focus {
+            background: white;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(37, 99, 235, 0.10);
+        }
+
+
+        input::placeholder {
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           Login Button
+           ========================= */
+
+        button {
             width: 100%;
 
-            padding: 12px;
+            height: 50px;
+
+            margin-top: 5px;
 
             border: none;
 
-            border-radius: 6px;
+            border-radius: 8px;
 
-            background: #2563eb;
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
 
             color: white;
 
             font-size: 16px;
 
+            font-weight: 600;
+
             cursor: pointer;
+
+            box-shadow:
+                0 8px 18px
+                rgba(37, 99, 235, 0.25);
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
         }
+
 
         button:hover {
+            transform: translateY(-1px);
 
-            background: #1d4ed8;
+            box-shadow:
+                0 11px 22px
+                rgba(37, 99, 235, 0.32);
         }
+
+
+        button:active {
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           Register
+           ========================= */
 
         .register {
-
             text-align: center;
 
-            margin-top: 20px;
+            margin-top: 25px;
 
-            color: #6b7280;
+            padding-top: 22px;
+
+            border-top:
+                1px solid #e5e7eb;
+
+            color: #64748b;
+
+            font-size: 14px;
         }
 
-        .register a {
 
+        .register a {
             color: #2563eb;
 
             text-decoration: none;
 
-            font-weight: bold;
+            font-weight: 700;
+
+            margin-left: 4px;
         }
 
-        .register a:hover {
 
+        .register a:hover {
             text-decoration: underline;
         }
 
-        .message {
 
-            background: #dcfce7;
+        /* =========================
+           Security Text
+           ========================= */
 
-            color: #166534;
+        .security-note {
+            display: flex;
 
-            padding: 10px;
+            align-items: center;
 
-            border-radius: 6px;
+            justify-content: center;
 
-            text-align: center;
+            gap: 6px;
 
-            margin-bottom: 15px;
+            margin-top: 18px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
         }
 
-        .error {
 
-            background: #fee2e2;
+        /* =========================
+           Responsive
+           ========================= */
 
-            color: #b91c1c;
+        @media (max-width: 850px) {
 
-            padding: 10px;
+            .login-layout {
+                grid-template-columns: 1fr;
 
-            border-radius: 6px;
+                max-width: 500px;
+            }
 
-            text-align: center;
 
-            margin-bottom: 15px;
+            .welcome-panel {
+                min-height: 300px;
+
+                padding: 40px;
+            }
+
+
+            .welcome-content h1 {
+                font-size: 34px;
+            }
+
+
+            .features {
+                display: none;
+            }
+
+
+            .brand {
+                margin-bottom: 30px;
+            }
+
+
+            .login-panel {
+                padding: 40px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .page-wrapper {
+                padding: 0;
+            }
+
+
+            .login-layout {
+                min-height: 100vh;
+
+                border-radius: 0;
+
+                box-shadow: none;
+            }
+
+
+            .welcome-panel {
+                padding: 30px;
+
+                min-height: 260px;
+            }
+
+
+            .welcome-content h1 {
+                font-size: 30px;
+            }
+
+
+            .welcome-content > p {
+                font-size: 14px;
+            }
+
+
+            .login-panel {
+                padding: 30px 25px;
+            }
+
+
+            .login-heading h2 {
+                font-size: 27px;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
 
-<div class="login-container">
 
-    <h1>Job Portal</h1>
+<div class="page-wrapper">
 
-    <p class="subtitle">
-        Login to your account
-    </p>
 
-    <div id="message"
-         class="message"
-         style="display:none;">
-    </div>
+    <div class="login-layout">
 
-    <div id="error"
-         class="error"
-         style="display:none;">
-    </div>
 
-    <form action="/login"
-          method="POST">
+        <!-- =========================
+             Left Welcome Section
+             ========================= -->
 
-        <div class="form-group">
+        <section class="welcome-panel">
 
-            <label for="email">
-                Email
-            </label>
 
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                required>
+            <div class="brand">
 
-        </div>
+                <div class="brand-icon">
+                    💼
+                </div>
 
-        <div class="form-group">
+                <div class="brand-name">
+                    Job Portal
+                </div>
 
-            <label for="password">
-                Password
-            </label>
+            </div>
 
-            <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                required>
 
-        </div>
+            <div class="welcome-content">
 
-        <div class="form-group">
+                <span class="eyebrow">
+                    Career & Hiring Platform
+                </span>
 
-            <label for="role">
-                Role
-            </label>
 
-            <select
-                id="role"
-                name="role"
-                required>
+                <h1>
+                    Build your
+                    <span>future.</span>
+                </h1>
 
-                <option value="">
-                    Select Role
-                </option>
 
-                <option value="candidate">
-                    Candidate
-                </option>
+                <p>
+                    Connect talented candidates with
+                    great opportunities and help
+                    companies find the people they need.
+                </p>
 
-                <option value="employer">
-                    Employer
-                </option>
 
-            </select>
+                <div class="features">
 
-        </div>
+                    <div class="feature">
 
-        <button type="submit">
-            Login
-        </button>
+                        <div class="feature-icon">
+                            ✓
+                        </div>
 
-    </form>
+                        <span>
+                            Discover meaningful career opportunities
+                        </span>
 
-    <div class="register">
+                    </div>
 
-        Don't have an account?
 
-        <a href="/register.html">
-            Register
-        </a>
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            ✓
+                        </div>
+
+                        <span>
+                            Post and manage job opportunities
+                        </span>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            ✓
+                        </div>
+
+                        <span>
+                            Manage applications in one place
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Login Section
+             ========================= -->
+
+        <section class="login-panel">
+
+
+            <div class="login-container">
+
+
+                <div class="login-heading">
+
+                    <h2>
+                        Welcome back
+                    </h2>
+
+                    <p>
+                        Login to continue to your account
+                    </p>
+
+                </div>
+
+
+                <!-- Success Message -->
+
+                <div
+                    id="message"
+                    class="message"
+                    style="display:none;">
+                </div>
+
+
+                <!-- Error Message -->
+
+                <div
+                    id="error"
+                    class="error"
+                    style="display:none;">
+                </div>
+
+
+                <!-- Login Form -->
+
+                <form
+                    action="/login"
+                    method="POST">
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ✉
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Role -->
+
+                    <div class="form-group">
+
+                        <label for="role">
+                            Login as
+                        </label>
+
+                        <select
+                            id="role"
+                            name="role"
+                            required>
+
+                            <option value="">
+                                Select your role
+                            </option>
+
+                            <option value="candidate">
+                                Candidate
+                            </option>
+
+                            <option value="employer">
+                                Employer
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Login -->
+
+                    <button type="submit">
+                        Login to Account
+                    </button>
+
+
+                </form>
+
+
+                <!-- Register -->
+
+                <div class="register">
+
+                    Don't have an account?
+
+                    <a href="/register.html">
+                        Create an account
+                    </a>
+
+                </div>
+
+
+                <div class="security-note">
+
+                    🔐
+                    <span>
+                        Your account information is protected
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
 
     </div>
 
 </div>
+
+
+<!-- =========================
+     Existing Message Handling
+     ========================= -->
 
 <script>
 
@@ -285,11 +971,14 @@
             window.location.search
         );
 
+
     const message =
         params.get("message");
 
+
     const error =
         params.get("error");
+
 
     if (message) {
 
@@ -301,7 +990,9 @@
 
         messageBox.style.display =
             "block";
+
     }
+
 
     if (error) {
 
@@ -313,9 +1004,11 @@
 
         errorBox.style.display =
             "block";
+
     }
 
 </script>
+
 
 </body>
 

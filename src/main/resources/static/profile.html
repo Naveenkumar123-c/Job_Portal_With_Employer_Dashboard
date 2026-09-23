@@ -5,10 +5,11 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>Job Portal - Profile</title>
+    <title>Profile - Job Portal</title>
 
     <link rel="stylesheet" href="profile.css">
 
@@ -16,7 +17,10 @@
 
 <body>
 
-    <!-- Sidebar -->
+
+    <!-- =========================
+         Sidebar
+         ========================= -->
 
     <div class="sidebar">
 
@@ -38,8 +42,12 @@
             Applications
         </a>
 
-        <a href="profile.html" class="active">
+        <a
+            href="profile.html"
+            class="active">
+
             Profile
+
         </a>
 
         <a href="index.html">
@@ -49,116 +57,209 @@
     </div>
 
 
-    <!-- Main Content -->
+    <!-- =========================
+         Main Content
+         ========================= -->
 
     <div class="main-content">
 
-        <h1>My Profile</h1>
 
-        <p>
-            Manage your profile information.
-        </p>
+        <!-- Page Header -->
+
+        <div class="page-header">
+
+            <h1>
+                My Profile
+            </h1>
+
+            <p>
+                Manage your profile information.
+            </p>
+
+        </div>
 
 
-        <!-- Profile Card -->
+        <!-- =========================
+             Profile Card
+             ========================= -->
 
         <div class="profile-card">
 
-            <h2>Profile Information</h2>
+
+            <div class="profile-card-header">
+
+                <div class="profile-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <h2>
+                        Profile Information
+                    </h2>
+
+                    <p>
+                        Keep your employer information
+                        up to date.
+                    </p>
+
+                </div>
+
+            </div>
 
 
-            <!-- Profile Form -->
+            <!-- =========================
+                 Profile Form
+                 ========================= -->
 
             <form id="profileForm">
 
-                <label for="name">
-                    Full Name
-                </label>
 
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter your name"
-                    required
-                >
+                <!-- Full Name -->
 
+                <div class="profile-form-group">
 
-                <label for="email">
-                    Email
-                </label>
+                    <label for="name">
+                        Full Name
+                    </label>
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    required
-                >
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
 
 
-                <label for="company">
-                    Company Name
-                </label>
+                <!-- Email -->
 
-                <input
-                    type="text"
-                    id="company"
-                    placeholder="Enter your company name"
-                    required
-                >
+                <div class="profile-form-group">
 
+                    <label for="email">
+                        Email
+                    </label>
 
-                <label for="phone">
-                    Phone
-                </label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required>
 
-                <input
-                    type="tel"
-                    id="phone"
-                    placeholder="Enter phone number"
-                    required
-                >
+                </div>
 
 
-                <label for="qualification">
-                    Qualification
-                </label>
+                <!-- Company -->
 
-                <input
-                    type="text"
-                    id="qualification"
-                    placeholder="Enter your qualification"
-                    required
-                >
+                <div class="profile-form-group">
 
+                    <label for="company">
+                        Company Name
+                    </label>
 
-                <label for="skills">
-                    Skills
-                </label>
+                    <input
+                        type="text"
+                        id="company"
+                        placeholder="Enter your company name"
+                        required>
 
-                <textarea
-                    id="skills"
-                    placeholder="Java, HTML, CSS, JavaScript, etc."
-                    required
-                ></textarea>
+                </div>
 
 
-                <label for="resume">
-                    Resume
-                </label>
+                <!-- Phone -->
 
-                <input
-                    type="file"
-                    id="resume"
-                    accept=".pdf,.doc,.docx"
-                >
+                <div class="profile-form-group">
+
+                    <label for="phone">
+                        Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter phone number"
+                        required>
+
+                </div>
 
 
-                <button type="submit">
+                <!-- Qualification -->
+
+                <div class="profile-form-group">
+
+                    <label for="qualification">
+                        Qualification
+                    </label>
+
+                    <input
+                        type="text"
+                        id="qualification"
+                        placeholder="Enter your qualification"
+                        required>
+
+                </div>
+
+
+                <!-- Skills -->
+
+                <div class="profile-form-group">
+
+                    <label for="skills">
+                        Skills
+                    </label>
+
+                    <textarea
+                        id="skills"
+                        rows="5"
+                        placeholder="Java, HTML, CSS, JavaScript, etc."
+                        required></textarea>
+
+                </div>
+
+
+                <!-- Resume -->
+
+                <div class="profile-form-group">
+
+                    <label for="resume">
+                        Resume
+                    </label>
+
+                    <div class="file-upload">
+
+                        <input
+                            type="file"
+                            id="resume"
+                            accept=".pdf,.doc,.docx">
+
+                        <p>
+                            Accepted formats:
+                            PDF, DOC, DOCX
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Save Button -->
+
+                <button
+                    type="submit"
+                    class="save-profile-btn">
+
                     Save Profile
+
                 </button>
 
 
-                <p id="message"></p>
+                <!-- Message -->
+
+                <p
+                    id="message"
+                    class="profile-message">
+                </p>
+
 
             </form>
 
@@ -167,7 +268,9 @@
     </div>
 
 
-    <!-- JavaScript -->
+    <!-- =========================
+         Existing JavaScript
+         ========================= -->
 
     <script src="/profile.js?v=2"></script>
 

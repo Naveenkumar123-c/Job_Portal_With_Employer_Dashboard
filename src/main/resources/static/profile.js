@@ -1,18 +1,40 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.getElementById("profileForm");
+    const message = document.getElementById("message");
 
     let profileId = null;
 
-    // Load existing profile
+
+    // =========================
+    // Helper: Show Message
+    // =========================
+
+    function showMessage(text, type) {
+
+        message.textContent = text;
+
+        message.className = "profile-message " + type;
+
+    }
+
+
+    // =========================
+    // Load Existing Profile
+    // =========================
+
     fetch("/api/profile/me")
+
         .then(response => {
+
             if (!response.ok) {
                 throw new Error("Profile not found");
             }
 
             return response.json();
+
         })
+
         .then(profile => {
 
             profileId = profile.id;
@@ -34,25 +56,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("skills").value =
                 profile.skills || "";
+
         })
+
         .catch(error => {
-            console.log("No existing profile:", error);
+
+            console.log(
+                "No existing profile:",
+                error
+            );
+
         });
 
 
-    // Save / Update profile
+    // =========================
+    // Save / Update Profile
+    // =========================
+
     form.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
+
         const profile = {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            company: document.getElementById("company").value,
-            phone: document.getElementById("phone").value,
-            qualification: document.getElementById("qualification").value,
-            skills: document.getElementById("skills").value
+
+            name:
+                document.getElementById("name").value.trim(),
+
+            email:
+                document.getElementById("email").value.trim(),
+
+            company:
+                document.getElementById("company").value.trim(),
+
+            phone:
+                document.getElementById("phone").value.trim(),
+
+            qualification:
+                document.getElementById("qualification").value.trim(),
+
+            skills:
+                document.getElementById("skills").value.trim()
+
         };
+
+
+        // =========================
+        // Determine API
+        // =========================
 
         let url;
         let method;
@@ -60,44 +111,108 @@ document.addEventListener("DOMContentLoaded", function () {
         if (profileId) {
 
             // Update existing profile
+
             url = "/api/profile/me";
+
             method = "PUT";
 
         } else {
 
             // Create new profile
+
             url = "/api/profile";
+
             method = "POST";
+
         }
 
+
+        // Disable button while saving
+
+        const saveButton =
+            form.querySelector(".save-profile-btn");
+
+        saveButton.disabled = true;
+
+        saveButton.textContent = "Saving...";
+
+
+        showMessage(
+            "Saving profile...",
+            "saving"
+        );
+
+
+        // =========================
+        // Send Request
+        // =========================
+
         fetch(url, {
+
             method: method,
+
             headers: {
                 "Content-Type": "application/json"
             },
+
             body: JSON.stringify(profile)
+
         })
+
         .then(response => {
 
             if (!response.ok) {
-                throw new Error("Failed to save profile");
+
+                throw new Error(
+                    "Failed to save profile"
+                );
+
             }
 
             return response.json();
+
         })
+
         .then(data => {
 
             profileId = data.id;
 
-            alert("Profile saved successfully!");
 
-            console.log("Saved profile:", data);
+            showMessage(
+                "Profile saved successfully!",
+                "success"
+            );
+
+
+            console.log(
+                "Saved profile:",
+                data
+            );
+
         })
+
         .catch(error => {
 
-            console.error("Error:", error);
+            console.error(
+                "Error:",
+                error
+            );
 
-            alert("Profile could not be saved.");
+
+            showMessage(
+                "Profile could not be saved. Please try again.",
+                "error"
+            );
+
+        })
+
+        .finally(() => {
+
+            saveButton.disabled = false;
+
+            saveButton.textContent =
+                "Save Profile";
+
         });
 
     });

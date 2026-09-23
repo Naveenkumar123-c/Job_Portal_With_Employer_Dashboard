@@ -5,258 +5,936 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Job Portal - Register</title>
 
     <style>
 
+        /* =========================
+           Global
+           ========================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
         body {
+            min-height: 100vh;
 
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a 0%,
+                    #172554 45%,
+                    #2563eb 100%
+                );
+
+            color: #17243a;
+        }
+
+
+        /* =========================
+           Page
+           ========================= */
+
+        .page-wrapper {
             min-height: 100vh;
 
             display: flex;
 
-            justify-content: center;
-
             align-items: center;
 
-            background: #f4f6f9;
+            justify-content: center;
+
+            padding: 30px;
         }
 
-        .register-container {
 
-            width: 430px;
+        /* =========================
+           Main Layout
+           ========================= */
+
+        .register-layout {
+            width: 100%;
+
+            max-width: 1100px;
+
+            min-height: 650px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
 
             background: white;
 
-            padding: 35px;
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* =========================
+           Left Panel
+           ========================= */
+
+        .welcome-panel {
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            padding: 60px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #172554,
+                    #1d4ed8
+                );
+
+            color: white;
+        }
+
+
+        .welcome-panel::before {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            top: -100px;
+
+            right: -80px;
+        }
+
+
+        .welcome-panel::after {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+
+            height: 220px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.06);
+
+            bottom: -80px;
+
+            left: -70px;
+        }
+
+
+        /* =========================
+           Brand
+           ========================= */
+
+        .brand {
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 45px;
+        }
+
+
+        .brand-icon {
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(255, 255, 255, 0.15);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.2);
 
             border-radius: 12px;
 
-            box-shadow:
-                0 4px 15px rgba(0, 0, 0, 0.12);
+            font-size: 25px;
         }
 
-        h1 {
 
-            text-align: center;
-
-            color: #1f2937;
-
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-
-            text-align: center;
-
-            color: #6b7280;
-
-            margin-bottom: 25px;
-        }
-
-        .form-group {
-
-            margin-bottom: 18px;
-        }
-
-        label {
-
-            display: block;
-
-            margin-bottom: 7px;
-
-            color: #374151;
+        .brand-name {
+            font-size: 22px;
 
             font-weight: bold;
         }
 
-        input,
-        select {
 
+        /* =========================
+           Welcome Content
+           ========================= */
+
+        .welcome-content {
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .welcome-content .eyebrow {
+            display: inline-block;
+
+            padding: 7px 12px;
+
+            margin-bottom: 18px;
+
+            background:
+                rgba(255, 255, 255, 0.12);
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 0.8px;
+
+            text-transform: uppercase;
+        }
+
+
+        .welcome-content h1 {
+            font-size: 42px;
+
+            line-height: 1.15;
+
+            margin-bottom: 20px;
+        }
+
+
+        .welcome-content h1 span {
+            color: #bfdbfe;
+        }
+
+
+        .welcome-content > p {
+            max-width: 450px;
+
+            color: #dbeafe;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* =========================
+           Features
+           ========================= */
+
+        .features {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 16px;
+        }
+
+
+        .feature {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+
+        .feature-icon {
+            width: 36px;
+
+            height: 36px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(255, 255, 255, 0.12);
+
+            border-radius: 9px;
+
+            font-size: 17px;
+        }
+
+
+        .feature span {
+            color: #eff6ff;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           Right Register Panel
+           ========================= */
+
+        .register-panel {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 50px;
+        }
+
+
+        .register-container {
             width: 100%;
 
-            padding: 12px;
+            max-width: 420px;
+        }
 
-            border: 1px solid #cbd5e1;
 
-            border-radius: 6px;
+        .register-heading {
+            margin-bottom: 27px;
+        }
+
+
+        .register-heading h2 {
+            color: #17243a;
+
+            font-size: 31px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .register-heading p {
+            color: #64748b;
 
             font-size: 15px;
         }
 
-        input:focus,
-        select:focus {
+
+        /* =========================
+           Form
+           ========================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #334155;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .input-wrapper {
+            position: relative;
+        }
+
+
+        .input-icon {
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #94a3b8;
+
+            font-size: 16px;
+
+            pointer-events: none;
+        }
+
+
+        input,
+        select {
+            width: 100%;
+
+            height: 47px;
+
+            padding:
+                0 14px 0 42px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            background: #f8fafc;
+
+            color: #17243a;
+
+            font-size: 15px;
 
             outline: none;
 
-            border-color: #2563eb;
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s,
+                background 0.2s;
         }
 
-        button {
 
+        select {
+            padding-left: 14px;
+
+            cursor: pointer;
+        }
+
+
+        input:focus,
+        select:focus {
+            background: white;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(37, 99, 235, 0.10);
+        }
+
+
+        input::placeholder {
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           Register Button
+           ========================= */
+
+        button {
             width: 100%;
 
-            padding: 12px;
+            height: 50px;
+
+            margin-top: 5px;
 
             border: none;
 
-            border-radius: 6px;
+            border-radius: 8px;
 
-            background: #2563eb;
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
 
             color: white;
 
             font-size: 16px;
 
+            font-weight: 600;
+
             cursor: pointer;
+
+            box-shadow:
+                0 8px 18px
+                rgba(37, 99, 235, 0.25);
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
         }
+
 
         button:hover {
+            transform: translateY(-1px);
 
-            background: #1d4ed8;
+            box-shadow:
+                0 11px 22px
+                rgba(37, 99, 235, 0.32);
         }
+
+
+        button:active {
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           Login Link
+           ========================= */
 
         .login-link {
-
             text-align: center;
 
-            margin-top: 20px;
+            margin-top: 23px;
 
-            color: #6b7280;
+            padding-top: 20px;
+
+            border-top:
+                1px solid #e5e7eb;
+
+            color: #64748b;
+
+            font-size: 14px;
         }
 
-        .login-link a {
 
+        .login-link a {
             color: #2563eb;
 
             text-decoration: none;
 
-            font-weight: bold;
+            font-weight: 700;
+
+            margin-left: 4px;
         }
 
-        .login-link a:hover {
 
+        .login-link a:hover {
             text-decoration: underline;
+        }
+
+
+        /* =========================
+           Security Note
+           ========================= */
+
+        .security-note {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            margin-top: 17px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           Responsive
+           ========================= */
+
+        @media (max-width: 850px) {
+
+            .register-layout {
+                grid-template-columns: 1fr;
+
+                max-width: 500px;
+            }
+
+
+            .welcome-panel {
+                min-height: 300px;
+
+                padding: 40px;
+            }
+
+
+            .welcome-content h1 {
+                font-size: 34px;
+            }
+
+
+            .features {
+                display: none;
+            }
+
+
+            .brand {
+                margin-bottom: 30px;
+            }
+
+
+            .register-panel {
+                padding: 40px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .page-wrapper {
+                padding: 0;
+            }
+
+
+            .register-layout {
+                min-height: 100vh;
+
+                border-radius: 0;
+
+                box-shadow: none;
+            }
+
+
+            .welcome-panel {
+                padding: 30px;
+
+                min-height: 260px;
+            }
+
+
+            .welcome-content h1 {
+                font-size: 30px;
+            }
+
+
+            .welcome-content > p {
+                font-size: 14px;
+            }
+
+
+            .register-panel {
+                padding: 30px 25px;
+            }
+
+
+            .register-heading h2 {
+                font-size: 27px;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
 
-<div class="register-container">
 
-    <h1>
-        Job Portal
-    </h1>
+<div class="page-wrapper">
 
-    <p class="subtitle">
-        Create your account
-    </p>
 
-    <form action="/register"
-          method="POST">
+    <div class="register-layout">
 
-        <div class="form-group">
 
-            <label for="name">
-                Full Name
-            </label>
+        <!-- =========================
+             Left Welcome Section
+             ========================= -->
 
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Enter your full name"
-                required>
+        <section class="welcome-panel">
 
-        </div>
 
-        <div class="form-group">
+            <div class="brand">
 
-            <label for="email">
-                Email
-            </label>
+                <div class="brand-icon">
+                    💼
+                </div>
 
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                required>
+                <div class="brand-name">
+                    Job Portal
+                </div>
 
-        </div>
+            </div>
 
-        <div class="form-group">
 
-            <label for="password">
-                Password
-            </label>
+            <div class="welcome-content">
 
-            <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                required>
+                <span class="eyebrow">
+                    Start Your Journey
+                </span>
 
-        </div>
 
-        <div class="form-group">
+                <h1>
+                    Create your
+                    <span>future.</span>
+                </h1>
 
-            <label for="role">
-                Role
-            </label>
 
-            <select
-                id="role"
-                name="role"
-                required>
+                <p>
+                    Join our job portal and connect
+                    with opportunities, talented people,
+                    and growing companies.
+                </p>
 
-                <option value="">
-                    Select Role
-                </option>
 
-                <option value="candidate">
-                    Candidate
-                </option>
+                <div class="features">
 
-                <option value="employer">
-                    Employer
-                </option>
+                    <div class="feature">
 
-            </select>
+                        <div class="feature-icon">
+                            ✓
+                        </div>
 
-        </div>
+                        <span>
+                            Create your professional account
+                        </span>
 
-        <button type="submit">
-            Register
-        </button>
+                    </div>
 
-    </form>
 
-    <div class="login-link">
+                    <div class="feature">
 
-        Already have an account?
+                        <div class="feature-icon">
+                            ✓
+                        </div>
 
-        <a href="/index.html">
-            Login
-        </a>
+                        <span>
+                            Discover career opportunities
+                        </span>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            ✓
+                        </div>
+
+                        <span>
+                            Connect with the right people
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Register Section
+             ========================= -->
+
+        <section class="register-panel">
+
+
+            <div class="register-container">
+
+
+                <div class="register-heading">
+
+                    <h2>
+                        Create an account
+                    </h2>
+
+                    <p>
+                        Fill in your details to get started
+                    </p>
+
+                </div>
+
+
+                <!-- Registration Form -->
+
+                <form
+                    action="/register"
+                    method="POST">
+
+
+                    <!-- Full Name -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your full name"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ✉
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Role -->
+
+                    <div class="form-group">
+
+                        <label for="role">
+                            Account Type
+                        </label>
+
+                        <select
+                            id="role"
+                            name="role"
+                            required>
+
+                            <option value="">
+                                Select your role
+                            </option>
+
+                            <option value="candidate">
+                                Candidate
+                            </option>
+
+                            <option value="employer">
+                                Employer
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Register -->
+
+                    <button type="submit">
+                        Create Account
+                    </button>
+
+
+                </form>
+
+
+                <!-- Login -->
+
+                <div class="login-link">
+
+                    Already have an account?
+
+                    <a href="/index.html">
+                        Login here
+                    </a>
+
+                </div>
+
+
+                <div class="security-note">
+
+                    🔐
+                    <span>
+                        Your information is kept secure
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
 
     </div>
 
 </div>
+
 
 </body>
 

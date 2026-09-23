@@ -1,31 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Applications - Job Portal</title>
 
     <link rel="stylesheet" href="applications.css">
+
 </head>
 
 <body>
 
-<div class="container">
 
-    <h1>Job Applications</h1>
+    <!-- =========================
+         Sidebar
+         ========================= -->
 
-    <div id="applicationsContainer">
-        <p>Loading applications...</p>
+    <div class="sidebar">
+
+        <h2>Job Portal</h2>
+
+        <a href="employer-dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="post-job.html">
+            Post Job
+        </a>
+
+        <a href="my-jobs.html">
+            My Jobs
+        </a>
+
+        <a
+            href="applications.html"
+            class="active">
+
+            Applications
+
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+        <a href="index.html">
+            Logout
+        </a>
+
     </div>
 
-    <a href="employer-dashboard.html">
-        ← Back to Dashboard
-    </a>
 
-</div>
+    <!-- =========================
+         Main Content
+         ========================= -->
 
-<script src="applications.js"></script>
+    <div class="main-content">
+
+
+        <!-- Page Header -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Job Applications
+                </h1>
+
+                <p>
+                    Review and manage applications
+                    submitted by candidates.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Applications -->
+
+        <div id="applicationsContainer">
+
+            <div class="loading-message">
+                Loading applications...
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <script src="applications.js"></script>
 
 </body>
+
 </html>

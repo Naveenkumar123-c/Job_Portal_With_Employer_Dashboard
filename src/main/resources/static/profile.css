@@ -1,3 +1,7 @@
+/* =========================
+   Global
+   ========================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,27 +10,34 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
+
+    background: #f4f6f9;
+
     color: #1f2937;
 }
 
-/* Sidebar */
+
+/* =========================
+   Sidebar
+   ========================= */
 
 .sidebar {
     position: fixed;
-    top: 0;
+
     left: 0;
+    top: 0;
 
     width: 230px;
     height: 100vh;
 
-    background-color: #1f2937;
+    background: #1f2937;
 
     padding-top: 25px;
 }
 
 .sidebar h2 {
     color: white;
+
     text-align: center;
 
     margin-bottom: 30px;
@@ -35,7 +46,7 @@ body {
 .sidebar a {
     display: block;
 
-    padding: 15px 25px;
+    padding: 15px 30px;
 
     color: white;
 
@@ -45,14 +56,17 @@ body {
 }
 
 .sidebar a:hover {
-    background-color: #2563eb;
+    background: #2563eb;
 }
 
 .sidebar a.active {
-    background-color: #2563eb;
+    background: #2563eb;
 }
 
-/* Main Content */
+
+/* =========================
+   Main Content
+   ========================= */
 
 .main-content {
     margin-left: 230px;
@@ -60,141 +74,338 @@ body {
     padding: 40px;
 }
 
-.main-content h1 {
-    font-size: 30px;
 
-    color: #1f2937;
+/* =========================
+   Page Header
+   ========================= */
 
-    margin-bottom: 10px;
-}
+.page-header {
+    background: white;
 
-.main-content > p {
-    color: #6b7280;
+    padding: 25px 30px;
+
+    border-radius: 10px;
 
     margin-bottom: 25px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* Profile Card */
+.page-header h1 {
+    margin-bottom: 8px;
+
+    color: #17243a;
+
+    font-size: 30px;
+}
+
+.page-header p {
+    color: #666;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   Profile Card
+   ========================= */
 
 .profile-card {
-    width: 650px;
+    width: 100%;
 
-    max-width: 100%;
+    max-width: 900px;
 
-    background-color: white;
+    background: white;
 
     padding: 30px;
 
-    border-radius: 12px;
+    border-radius: 10px;
 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-.profile-card h2 {
+
+/* =========================
+   Profile Card Header
+   ========================= */
+
+.profile-card-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-avatar {
+    width: 60px;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eff6ff;
+
+    border-radius: 50%;
+
+    font-size: 28px;
+}
+
+.profile-card-header h2 {
+    margin-bottom: 6px;
+
+    color: #17243a;
+
+    font-size: 22px;
+}
+
+.profile-card-header p {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   Form
+   ========================= */
+
+.profile-form-group {
     margin-bottom: 20px;
-
-    color: #1f2937;
 }
 
-/* Labels */
-
-.profile-card label {
+.profile-form-group label {
     display: block;
 
-    margin-top: 16px;
+    margin-bottom: 8px;
 
-    margin-bottom: 7px;
+    color: #17243a;
 
-    font-weight: bold;
+    font-size: 15px;
 
-    color: #374151;
+    font-weight: 600;
 }
 
-/* Input */
 
-.profile-card input,
-.profile-card textarea {
+/* =========================
+   Inputs
+   ========================= */
+
+.profile-form-group input,
+.profile-form-group textarea {
     width: 100%;
 
-    padding: 12px;
+    padding: 12px 14px;
 
-    border: 1px solid #d1d5db;
+    border: 1px solid #cbd5e1;
 
     border-radius: 6px;
+
+    background: white;
+
+    font-family: Arial, sans-serif;
 
     font-size: 15px;
 
     outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
 }
 
-.profile-card input:focus,
-.profile-card textarea:focus {
+.profile-form-group input:focus,
+.profile-form-group textarea:focus {
     border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.12);
 }
 
-/* Resume */
 
-.profile-card input[type="file"] {
-    background-color: #f9fafb;
+/* =========================
+   Textarea
+   ========================= */
 
-    padding: 10px;
-}
-
-/* Textarea */
-
-.profile-card textarea {
-    min-height: 100px;
+.profile-form-group textarea {
+    min-height: 130px;
 
     resize: vertical;
 }
 
-/* Save Button */
 
-.profile-card button {
-    margin-top: 25px;
+/* =========================
+   Placeholder
+   ========================= */
 
-    padding: 12px 25px;
+.profile-form-group input::placeholder,
+.profile-form-group textarea::placeholder {
+    color: #94a3b8;
+}
 
-    background-color: #2563eb;
 
-    color: white;
+/* =========================
+   File Upload
+   ========================= */
+
+.file-upload {
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border: 1px dashed #cbd5e1;
+
+    border-radius: 7px;
+}
+
+.file-upload input {
+    width: 100%;
+
+    border: none;
+
+    padding: 0;
+
+    background: transparent;
+}
+
+.file-upload p {
+    margin-top: 8px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   Save Button
+   ========================= */
+
+.save-profile-btn {
+    width: 100%;
+
+    padding: 13px 20px;
+
+    margin-top: 5px;
 
     border: none;
 
     border-radius: 6px;
 
+    background: #2563eb;
+
+    color: white;
+
     font-size: 16px;
+
+    font-weight: 600;
 
     cursor: pointer;
 }
 
-.profile-card button:hover {
-    background-color: #1d4ed8;
+.save-profile-btn:hover {
+    background: #1d4ed8;
 }
 
-/* Message */
 
-#message {
+/* =========================
+   Message
+   ========================= */
+
+.profile-message {
     margin-top: 15px;
 
-    font-weight: bold;
+    text-align: center;
+
+    font-size: 15px;
+
+    font-weight: 600;
 }
 
-/* Mobile */
+
+/* =========================
+   Mobile
+   ========================= */
 
 @media (max-width: 700px) {
 
     .sidebar {
-        width: 180px;
+        position: relative;
+
+        width: 100%;
+
+        height: auto;
+
+        padding-top: 15px;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 15px;
+    }
+
+    .sidebar a {
+        padding: 10px 20px;
     }
 
     .main-content {
-        margin-left: 180px;
+        margin-left: 0;
 
         padding: 20px;
     }
 
-    .profile-card {
-        width: 100%;
+    .page-header {
+        padding: 20px;
     }
+
+    .page-header h1 {
+        font-size: 25px;
+    }
+
+    .profile-card {
+        padding: 20px;
+    }
+
+    .profile-card-header {
+        align-items: flex-start;
+    }
+
+}
+/* =========================
+   Profile Message States
+   ========================= */
+
+.profile-message.saving {
+    color: #64748b;
+}
+
+.profile-message.success {
+    color: #15803d;
+}
+
+.profile-message.error {
+    color: #dc2626;
+}
+
+
+/* =========================
+   Disabled Save Button
+   ========================= */
+
+.save-profile-btn:disabled {
+    background: #93c5fd;
+
+    cursor: not-allowed;
 }

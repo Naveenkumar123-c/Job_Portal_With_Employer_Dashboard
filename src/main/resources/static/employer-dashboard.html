@@ -2,558 +2,960 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Employer Dashboard</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Employer Dashboard - Job Portal</title>
 
     <link rel="stylesheet" href="dashboard.css">
+
 </head>
 
 <body>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
 
-        <h2>Job Portal</h2>
+<!-- =========================
+     SIDEBAR
+     ========================= -->
 
-        <a href="employer-dashboard.html">
-            Dashboard
-        </a>
+<div class="sidebar">
 
-        <a href="post-job.html">
-            Post Job
-        </a>
+    <div class="sidebar-brand">
 
-        <a href="my-jobs.html">
-            My Jobs
-        </a>
+        <div class="sidebar-logo">
+            💼
+        </div>
 
-        <a href="applications.html">
-            Applications
-        </a>
-
-        <a href="profile.html">
-            Profile
-        </a>
-
-        <a href="index.html">
-            Logout
-        </a>
+        <div>
+            <h2>Job Portal</h2>
+            <span>Employer Panel</span>
+        </div>
 
     </div>
 
 
-    <!-- MAIN CONTENT -->
-    <div class="main-content">
+    <nav class="sidebar-nav">
+
+        <a
+            href="employer-dashboard.html"
+            class="active">
+
+            <span class="nav-icon">▦</span>
+
+            <span>Dashboard</span>
+
+        </a>
 
 
-        <!-- PROFILE SUMMARY -->
-        <div class="profile-summary">
+        <a href="post-job.html">
 
-            <h2>Employer Profile</h2>
+            <span class="nav-icon">＋</span>
+
+            <span>Post Job</span>
+
+        </a>
+
+
+        <a href="my-jobs.html">
+
+            <span class="nav-icon">▤</span>
+
+            <span>My Jobs</span>
+
+        </a>
+
+
+        <a href="applications.html">
+
+            <span class="nav-icon">◉</span>
+
+            <span>Applications</span>
+
+        </a>
+
+
+        <a href="profile.html">
+
+            <span class="nav-icon">♙</span>
+
+            <span>Profile</span>
+
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="index.html" class="logout-link">
+
+            <span class="nav-icon">↪</span>
+
+            <span>Logout</span>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     MAIN CONTENT
+     ========================= -->
+
+<div class="main-content">
+
+
+    <!-- =========================
+         TOP HEADER
+         ========================= -->
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <div class="welcome-label">
+                EMPLOYER DASHBOARD
+            </div>
+
+            <h1>
+                Welcome back 👋
+            </h1>
 
             <p>
-                <strong>Name:</strong>
-                <span id="profileName">
-                    Loading...
-                </span>
+                Manage your jobs, candidates and
+                hiring activity from one place.
             </p>
-
-            <p>
-                <strong>Company:</strong>
-                <span id="profileCompany">
-                    Loading...
-                </span>
-            </p>
-
-            <p>
-                <strong>Email:</strong>
-                <span id="profileEmail">
-                    Loading...
-                </span>
-            </p>
-
-            <a href="profile.html" class="edit-profile">
-                Edit Profile
-            </a>
 
         </div>
 
 
-        <!-- HEADER -->
-        <header>
+        <a
+            href="post-job.html"
+            class="header-post-btn">
 
-            <h1>
-                Employer Dashboard
-            </h1>
+            <span>＋</span>
 
-            <p>
-                Welcome, Employer!
-            </p>
+            Post New Job
 
-        </header>
-
-
-        <!-- DASHBOARD CARDS -->
-        <section class="cards">
-
-
-            <!-- TOTAL JOBS -->
-            <div class="card">
-
-                <h3>
-                    Total Jobs
-                </h3>
-
-                <p id="totalJobs">
-                    0
-                </p>
-
-            </div>
-
-
-            <!-- APPLICATIONS -->
-            <div class="card">
-
-                <h3>
-                    Applications
-                </h3>
-
-                <p id="totalApplications">
-                    0
-                </p>
-
-            </div>
-
-
-            <!-- ACTIVE JOBS -->
-            <div class="card">
-
-                <h3>
-                    Active Jobs
-                </h3>
-
-                <p id="activeJobs">
-                    0
-                </p>
-
-            </div>
-
-
-            <!-- SHORTLISTED -->
-            <div class="card">
-
-                <h3>
-                    Shortlisted
-                </h3>
-
-                <p id="shortlistedApplications">
-                    0
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- RECENT APPLICATIONS -->
-        <section class="recent">
-
-            <h2>
-                Recent Applications
-            </h2>
-
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Candidate
-                        </th>
-
-                        <th>
-                            Job
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody id="recentApplications">
-
-                    <tr>
-
-                        <td colspan="3">
-                            Loading applications...
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </section>
-
+        </a>
 
     </div>
 
 
-    <!-- DASHBOARD JAVASCRIPT -->
-    <script>
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
+    <!-- =========================
+         PROFILE SUMMARY
+         ========================= -->
 
-                loadProfile();
+    <section class="employer-profile-card">
 
-                loadDashboardData();
+
+        <div class="profile-info">
+
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+
+            <div class="profile-details">
+
+                <span class="profile-label">
+                    EMPLOYER PROFILE
+                </span>
+
+                <h2 id="profileName">
+                    Loading...
+                </h2>
+
+                <p id="profileCompany">
+                    Loading...
+                </p>
+
+                <p
+                    class="profile-email"
+                    id="profileEmail">
+
+                    Loading...
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="profile.html"
+            class="edit-profile">
+
+            Edit Profile
+
+        </a>
+
+    </section>
+
+
+
+    <!-- =========================
+         STATISTICS
+         ========================= -->
+
+    <section class="dashboard-stats">
+
+
+        <!-- Total Jobs -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon blue">
+                    💼
+                </div>
+
+                <span class="stat-tag">
+                    JOBS
+                </span>
+
+            </div>
+
+            <div class="stat-number" id="totalJobs">
+                0
+            </div>
+
+            <div class="stat-title">
+                Total Jobs
+            </div>
+
+            <div class="stat-description">
+                Jobs posted on the platform
+            </div>
+
+        </div>
+
+
+        <!-- Applications -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon purple">
+                    👥
+                </div>
+
+                <span class="stat-tag">
+                    CANDIDATES
+                </span>
+
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalApplications">
+
+                0
+
+            </div>
+
+            <div class="stat-title">
+                Applications
+            </div>
+
+            <div class="stat-description">
+                Applications received
+            </div>
+
+        </div>
+
+
+        <!-- Active Jobs -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon green">
+                    ✓
+                </div>
+
+                <span class="stat-tag">
+                    ACTIVE
+                </span>
+
+            </div>
+
+            <div
+                class="stat-number"
+                id="activeJobs">
+
+                0
+
+            </div>
+
+            <div class="stat-title">
+                Active Jobs
+            </div>
+
+            <div class="stat-description">
+                Currently available jobs
+            </div>
+
+        </div>
+
+
+        <!-- Shortlisted -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon orange">
+                    ★
+                </div>
+
+                <span class="stat-tag">
+                    SELECTED
+                </span>
+
+            </div>
+
+            <div
+                class="stat-number"
+                id="shortlistedApplications">
+
+                0
+
+            </div>
+
+            <div class="stat-title">
+                Shortlisted
+            </div>
+
+            <div class="stat-description">
+                Selected candidates
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTENT GRID
+         ========================= -->
+
+    <section class="dashboard-content-grid">
+
+
+        <!-- =========================
+             RECENT APPLICATIONS
+             ========================= -->
+
+        <div class="recent-card">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Recent Applications
+                    </h2>
+
+                    <p>
+                        Latest candidates who applied
+                        to your jobs.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="applications.html"
+                    class="view-all-btn">
+
+                    View All
+
+                </a>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Candidate
+                            </th>
+
+                            <th>
+                                Job
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="recentApplications">
+
+                        <tr>
+
+                            <td
+                                colspan="3"
+                                class="table-message">
+
+                                Loading applications...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             QUICK ACTIONS
+             ========================= -->
+
+        <div class="quick-actions-card">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                    <p>
+                        Manage your hiring activity.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="post-job.html"
+                class="quick-action">
+
+                <div class="quick-action-icon">
+                    ＋
+                </div>
+
+                <div>
+
+                    <strong>
+                        Post a Job
+                    </strong>
+
+                    <span>
+                        Create a new job opening
+                    </span>
+
+                </div>
+
+                <span class="action-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="my-jobs.html"
+                class="quick-action">
+
+                <div class="quick-action-icon">
+                    ▤
+                </div>
+
+                <div>
+
+                    <strong>
+                        Manage Jobs
+                    </strong>
+
+                    <span>
+                        View and manage your jobs
+                    </span>
+
+                </div>
+
+                <span class="action-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="applications.html"
+                class="quick-action">
+
+                <div class="quick-action-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <strong>
+                        Review Applications
+                    </strong>
+
+                    <span>
+                        Review candidate applications
+                    </span>
+
+                </div>
+
+                <span class="action-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="profile.html"
+                class="quick-action">
+
+                <div class="quick-action-icon">
+                    ⚙
+                </div>
+
+                <div>
+
+                    <strong>
+                        Update Profile
+                    </strong>
+
+                    <span>
+                        Manage employer information
+                    </span>
+
+                </div>
+
+                <span class="action-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+
+<!-- =========================
+     DASHBOARD JAVASCRIPT
+     ========================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadProfile();
+
+        loadDashboardData();
+
+    }
+);
+
+
+/* =========================
+   LOAD EMPLOYER PROFILE
+   ========================= */
+
+function loadProfile() {
+
+    fetch("/api/profile/me")
+
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Profile not found"
+                );
 
             }
-        );
+
+            return response.json();
+
+        })
+
+        .then(profile => {
+
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                profile.name || "Not set";
 
 
-        // =========================
-        // LOAD EMPLOYER PROFILE
-        // =========================
-
-        function loadProfile() {
-
-            fetch("/api/profile/me")
-
-                .then(response => {
-
-                    if (!response.ok) {
-
-                        throw new Error(
-                            "Profile not found"
-                        );
-
-                    }
-
-                    return response.json();
-
-                })
-
-                .then(profile => {
-
-                    document.getElementById(
-                        "profileName"
-                    ).textContent =
-                        profile.name || "Not set";
+            document.getElementById(
+                "profileCompany"
+            ).textContent =
+                profile.company || "Company not set";
 
 
-                    document.getElementById(
-                        "profileCompany"
-                    ).textContent =
-                        profile.company || "Not set";
+            document.getElementById(
+                "profileEmail"
+            ).textContent =
+                profile.email || "Email not set";
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "Profile error:",
+                error
+            );
 
 
-                    document.getElementById(
-                        "profileEmail"
-                    ).textContent =
-                        profile.email || "Not set";
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                "Profile not set";
 
-                })
 
-                .catch(error => {
+            document.getElementById(
+                "profileCompany"
+            ).textContent =
+                "Company not set";
 
-                    console.error(
-                        "Profile error:",
-                        error
+
+            document.getElementById(
+                "profileEmail"
+            ).textContent =
+                "Email not set";
+
+        });
+
+}
+
+
+/* =========================
+   LOAD DASHBOARD DATA
+   ========================= */
+
+function loadDashboardData() {
+
+    Promise.all([
+
+        fetch("/api/jobs")
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Failed to load jobs"
                     );
 
-                    document.getElementById(
-                        "profileName"
-                    ).textContent = "Not set";
+                }
+
+                return response.json();
+
+            }),
 
 
-                    document.getElementById(
-                        "profileCompany"
-                    ).textContent = "Not set";
+        fetch("/api/applications")
+            .then(response => {
 
+                if (!response.ok) {
 
-                    document.getElementById(
-                        "profileEmail"
-                    ).textContent = "Not set";
-
-                });
-
-        }
-
-
-        // =========================
-        // LOAD DASHBOARD DATA
-        // =========================
-
-        function loadDashboardData() {
-
-            Promise.all([
-
-                fetch("/api/jobs")
-                    .then(response => {
-
-                        if (!response.ok) {
-
-                            throw new Error(
-                                "Failed to load jobs"
-                            );
-
-                        }
-
-                        return response.json();
-
-                    }),
-
-
-                fetch("/api/applications")
-                    .then(response => {
-
-                        if (!response.ok) {
-
-                            throw new Error(
-                                "Failed to load applications"
-                            );
-
-                        }
-
-                        return response.json();
-
-                    })
-
-            ])
-
-            .then(([jobs, applications]) => {
-
-                // -------------------------
-                // TOTAL JOBS
-                // -------------------------
-
-                document.getElementById(
-                    "totalJobs"
-                ).textContent = jobs.length;
-
-
-                // -------------------------
-                // APPLICATIONS
-                // -------------------------
-
-                document.getElementById(
-                    "totalApplications"
-                ).textContent =
-                    applications.length;
-
-
-                // -------------------------
-                // ACTIVE JOBS
-                // -------------------------
-                //
-                // The current Job entity does
-                // not have an active/inactive
-                // field.
-                //
-                // Therefore all existing jobs
-                // are currently treated as active.
-                // -------------------------
-
-                document.getElementById(
-                    "activeJobs"
-                ).textContent = jobs.length;
-
-
-                // -------------------------
-                // SHORTLISTED
-                // -------------------------
-
-                const shortlisted =
-                    applications.filter(
-                        application => {
-
-                            const status =
-                                (
-                                    application.status ||
-                                    ""
-                                ).toLowerCase();
-
-                            return (
-                                status === "shortlisted" ||
-                                status === "selected"
-                            );
-
-                        }
+                    throw new Error(
+                        "Failed to load applications"
                     );
 
+                }
 
-                document.getElementById(
-                    "shortlistedApplications"
-                ).textContent =
-                    shortlisted.length;
-
-
-                // -------------------------
-                // RECENT APPLICATIONS
-                // -------------------------
-
-                displayRecentApplications(
-                    applications
-                );
+                return response.json();
 
             })
 
-            .catch(error => {
+    ])
 
-                console.error(
-                    "Dashboard error:",
-                    error
-                );
+    .then(([jobs, applications]) => {
 
 
-                document.getElementById(
-                    "totalJobs"
-                ).textContent = "0";
+        /* Total Jobs */
+
+        document.getElementById(
+            "totalJobs"
+        ).textContent =
+            jobs.length;
 
 
-                document.getElementById(
-                    "totalApplications"
-                ).textContent = "0";
+        /* Applications */
+
+        document.getElementById(
+            "totalApplications"
+        ).textContent =
+            applications.length;
 
 
-                document.getElementById(
-                    "activeJobs"
-                ).textContent = "0";
+        /*
+         * Current Job entity does not have
+         * an active/inactive field.
+         *
+         * Therefore all existing jobs
+         * are currently treated as active.
+         */
+
+        document.getElementById(
+            "activeJobs"
+        ).textContent =
+            jobs.length;
 
 
-                document.getElementById(
-                    "shortlistedApplications"
-                ).textContent = "0";
+        /* Shortlisted */
 
-
-                document.getElementById(
-                    "recentApplications"
-                ).innerHTML = `
-                    <tr>
-                        <td colspan="3">
-                            Unable to load dashboard data.
-                        </td>
-                    </tr>
-                `;
-
-            });
-
-        }
-
-
-        // =========================
-        // DISPLAY RECENT APPLICATIONS
-        // =========================
-
-        function displayRecentApplications(
-            applications
-        ) {
-
-            const tableBody =
-                document.getElementById(
-                    "recentApplications"
-                );
-
-
-            tableBody.innerHTML = "";
-
-
-            if (
-                !applications ||
-                applications.length === 0
-            ) {
-
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="3">
-                            No applications found.
-                        </td>
-                    </tr>
-                `;
-
-                return;
-
-            }
-
-
-            // Show latest 5 applications.
-            // Newer records normally have
-            // higher IDs in this project.
-
-            const recentApplications =
-                [...applications]
-                    .sort(
-                        (a, b) =>
-                            (b.id || 0) -
-                            (a.id || 0)
-                    )
-                    .slice(0, 5);
-
-
-            recentApplications.forEach(
+        const shortlisted =
+            applications.filter(
                 application => {
 
-                    const row =
-                        document.createElement("tr");
+                    const status =
+                        (
+                            application.status ||
+                            ""
+                        ).toLowerCase();
 
-
-                    const candidateCell =
-                        document.createElement("td");
-
-                    candidateCell.textContent =
-                        application.applicantName ||
-                        "Unknown";
-
-
-                    const jobCell =
-                        document.createElement("td");
-
-                    jobCell.textContent =
-                        application.jobTitle ||
-                        "Unknown";
-
-
-                    const statusCell =
-                        document.createElement("td");
-
-                    statusCell.textContent =
-                        application.status ||
-                        "Pending";
-
-
-                    row.appendChild(
-                        candidateCell
+                    return (
+                        status === "shortlisted" ||
+                        status === "selected"
                     );
-
-                    row.appendChild(
-                        jobCell
-                    );
-
-                    row.appendChild(
-                        statusCell
-                    );
-
-
-                    tableBody.appendChild(row);
 
                 }
             );
 
-        }
 
-    </script>
+        document.getElementById(
+            "shortlistedApplications"
+        ).textContent =
+            shortlisted.length;
+
+
+        /* Recent Applications */
+
+        displayRecentApplications(
+            applications
+        );
+
+    })
+
+    .catch(error => {
+
+        console.error(
+            "Dashboard error:",
+            error
+        );
+
+
+        document.getElementById(
+            "totalJobs"
+        ).textContent = "0";
+
+
+        document.getElementById(
+            "totalApplications"
+        ).textContent = "0";
+
+
+        document.getElementById(
+            "activeJobs"
+        ).textContent = "0";
+
+
+        document.getElementById(
+            "shortlistedApplications"
+        ).textContent = "0";
+
+
+        document.getElementById(
+            "recentApplications"
+        ).innerHTML = `
+            <tr>
+                <td
+                    colspan="3"
+                    class="table-message error-message">
+
+                    Unable to load dashboard data.
+
+                </td>
+            </tr>
+        `;
+
+    });
+
+}
+
+
+/* =========================
+   DISPLAY RECENT APPLICATIONS
+   ========================= */
+
+function displayRecentApplications(
+    applications
+) {
+
+    const tableBody =
+        document.getElementById(
+            "recentApplications"
+        );
+
+
+    tableBody.innerHTML = "";
+
+
+    if (
+        !applications ||
+        applications.length === 0
+    ) {
+
+        tableBody.innerHTML = `
+            <tr>
+                <td
+                    colspan="3"
+                    class="table-message">
+
+                    No applications found.
+
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    /*
+     * Show latest 5 applications.
+     * Newer records normally have
+     * higher IDs.
+     */
+
+    const recentApplications =
+        [...applications]
+            .sort(
+                (a, b) =>
+                    (b.id || 0) -
+                    (a.id || 0)
+            )
+            .slice(0, 5);
+
+
+    recentApplications.forEach(
+        application => {
+
+            const row =
+                document.createElement("tr");
+
+
+            const candidateCell =
+                document.createElement("td");
+
+            candidateCell.textContent =
+                application.applicantName ||
+                "Unknown";
+
+
+            const jobCell =
+                document.createElement("td");
+
+            jobCell.textContent =
+                application.jobTitle ||
+                "Unknown";
+
+
+            const statusCell =
+                document.createElement("td");
+
+
+            const status =
+                application.status ||
+                "Pending";
+
+
+            const badge =
+                document.createElement("span");
+
+            badge.className =
+                "status-badge " +
+                status
+                    .toLowerCase()
+                    .replace(/\s+/g, "-");
+
+
+            badge.textContent =
+                status;
+
+
+            statusCell.appendChild(
+                badge
+            );
+
+
+            row.appendChild(
+                candidateCell
+            );
+
+            row.appendChild(
+                jobCell
+            );
+
+            row.appendChild(
+                statusCell
+            );
+
+
+            tableBody.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+</script>
 
 </body>
 

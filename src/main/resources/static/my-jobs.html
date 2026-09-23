@@ -5,223 +5,469 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My Jobs</title>
+    <title>My Jobs - Job Portal</title>
 
     <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
 
-<div class="sidebar">
+    <!-- =========================
+         Sidebar
+         ========================= -->
 
-    <h2>Job Portal</h2>
+    <div class="sidebar">
 
-    <a href="employer-dashboard.html">
-        Dashboard
-    </a>
+        <h2>Job Portal</h2>
 
-    <a href="post-job.html">
-        Post Job
-    </a>
+        <a href="employer-dashboard.html">
+            Dashboard
+        </a>
 
-    <a href="my-jobs.html" class="active">
-        My Jobs
-    </a>
+        <a href="post-job.html">
+            Post Job
+        </a>
 
-    <a href="applications.html">
-        Applications
-    </a>
+        <a href="my-jobs.html" class="active">
+            My Jobs
+        </a>
 
-    <a href="profile.html">
-        Profile
-    </a>
+        <a href="applications.html">
+            Applications
+        </a>
 
-    <a href="index.html">
-        Logout
-    </a>
+        <a href="profile.html">
+            Profile
+        </a>
 
-</div>
+        <a href="index.html">
+            Logout
+        </a>
 
-
-<div class="main-content">
-
-    <h1>My Jobs</h1>
-
-    <p>Jobs currently available in the system.</p>
-
-    <div id="jobsContainer">
-        <p>Loading jobs...</p>
     </div>
 
-</div>
+
+    <!-- =========================
+         Main Content
+         ========================= -->
+
+    <div class="main-content">
+
+        <!-- Page Header -->
+
+        <div class="page-header">
+
+            <div>
+                <h1>My Jobs</h1>
+
+                <p>
+                    Manage the jobs you have posted.
+                </p>
+            </div>
+
+            <a
+                href="post-job.html"
+                class="add-job-btn">
+
+                + Post New Job
+
+            </a>
+
+        </div>
 
 
-<script>
+        <!-- Jobs -->
 
-document.addEventListener(
-    "DOMContentLoaded",
-    loadJobs
-);
+        <div id="jobsContainer">
 
+            <div class="loading-message">
+                Loading jobs...
+            </div>
 
-function loadJobs() {
+        </div>
 
-    fetch("/api/jobs")
-
-        .then(response => {
-
-            if (!response.ok) {
-                throw new Error("Failed to load jobs");
-            }
-
-            return response.json();
-
-        })
-
-        .then(jobs => {
-
-            displayJobs(jobs);
-
-        })
-
-        .catch(error => {
-
-            console.error(error);
-
-            document.getElementById(
-                "jobsContainer"
-            ).innerHTML =
-                "<p>Unable to load jobs.</p>";
-
-        });
-
-}
+    </div>
 
 
-function displayJobs(jobs) {
+    <!-- =========================
+         JavaScript
+         ========================= -->
 
-    const container =
-        document.getElementById(
-            "jobsContainer"
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            loadJobs
         );
 
 
-    if (!jobs || jobs.length === 0) {
+        /* =========================
+           Load Jobs
+           ========================= */
 
-        container.innerHTML =
-            "<p>No jobs posted yet.</p>";
+        function loadJobs() {
 
-        return;
-
-    }
-
-
-    container.innerHTML = "";
-
-
-    jobs.forEach(job => {
-
-        const card =
-            document.createElement("div");
-
-        card.className = "job-card";
+            const container =
+                document.getElementById(
+                    "jobsContainer"
+                );
 
 
-        card.innerHTML = `
-
-            <h2>
-                ${job.title || "Untitled Job"}
-            </h2>
-
-            <p>
-                <strong>Company:</strong>
-                ${job.company || "Not specified"}
-            </p>
-
-            <p>
-                <strong>Location:</strong>
-                ${job.location || "Not specified"}
-            </p>
-
-            <p>
-                <strong>Job Type:</strong>
-                ${job.type || "Not specified"}
-            </p>
-
-            <p>
-                <strong>Salary:</strong>
-                ${job.salary || "Not specified"}
-            </p>
-
-            <p>
-                <strong>Skills:</strong>
-                ${job.skills || "Not specified"}
-            </p>
-
-            <p>
-                <strong>Description:</strong>
-                ${job.description || "No description"}
-            </p>
-
-            <button
-                onclick="deleteJob(${job.id})">
-                Delete Job
-            </button>
-
-            <hr>
-
-        `;
+            container.innerHTML = `
+                <div class="loading-message">
+                    Loading jobs...
+                </div>
+            `;
 
 
-        container.appendChild(card);
+            fetch("/api/jobs")
 
-    });
+                .then(response => {
 
-}
+                    if (!response.ok) {
+
+                        throw new Error(
+                            "Failed to load jobs"
+                        );
+
+                    }
+
+                    return response.json();
+
+                })
+
+                .then(jobs => {
+
+                    displayJobs(jobs);
+
+                })
+
+                .catch(error => {
+
+                    console.error(error);
 
 
-function deleteJob(jobId) {
+                    container.innerHTML = `
+                        <div class="empty-state error-state">
 
-    const confirmed =
-        confirm(
-            "Are you sure you want to delete this job?"
-        );
+                            <h2>
+                                Unable to load jobs
+                            </h2>
 
+                            <p>
+                                Please try again later.
+                            </p>
 
-    if (!confirmed) {
-        return;
-    }
+                            <button
+                                class="retry-btn"
+                                onclick="loadJobs()">
 
+                                Try Again
 
-    fetch("/api/jobs/" + jobId, {
+                            </button>
 
-        method: "DELETE"
+                        </div>
+                    `;
 
-    })
+                });
 
-    .then(response => {
-
-        if (!response.ok) {
-            throw new Error("Failed to delete job");
         }
 
-        alert("Job deleted successfully.");
 
-        loadJobs();
+        /* =========================
+           Display Jobs
+           ========================= */
 
-    })
+        function displayJobs(jobs) {
 
-    .catch(error => {
+            const container =
+                document.getElementById(
+                    "jobsContainer"
+                );
 
-        console.error(error);
 
-        alert("Unable to delete job.");
+            /* No Jobs */
 
-    });
+            if (!jobs || jobs.length === 0) {
 
-}
+                container.innerHTML = `
 
-</script>
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            📋
+                        </div>
+
+                        <h2>
+                            No Jobs Posted Yet
+                        </h2>
+
+                        <p>
+                            You haven't posted any jobs.
+                            Create your first job vacancy now.
+                        </p>
+
+                        <a
+                            href="post-job.html"
+                            class="empty-post-btn">
+
+                            Post Your First Job
+
+                        </a>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /* Clear Container */
+
+            container.innerHTML = "";
+
+
+            /* Display Jobs */
+
+            jobs.forEach(job => {
+
+                const card =
+                    document.createElement("div");
+
+
+                card.className =
+                    "job-card";
+
+
+                card.innerHTML = `
+
+                    <!-- Job Header -->
+
+                    <div class="job-card-header">
+
+                        <div>
+
+                            <h2>
+                                ${escapeHtml(
+                                    job.title ||
+                                    "Untitled Job"
+                                )}
+                            </h2>
+
+                            <p class="job-company">
+
+                                ${escapeHtml(
+                                    job.company ||
+                                    "Company not specified"
+                                )}
+
+                            </p>
+
+                        </div>
+
+                        <span class="job-status">
+                            Active
+                        </span>
+
+                    </div>
+
+
+                    <!-- Job Details -->
+
+                    <div class="job-details">
+
+                        <div class="job-detail">
+
+                            <span class="detail-label">
+                                Location
+                            </span>
+
+                            <span class="detail-value">
+                                📍
+                                ${escapeHtml(
+                                    job.location ||
+                                    "Not specified"
+                                )}
+                            </span>
+
+                        </div>
+
+
+                        <div class="job-detail">
+
+                            <span class="detail-label">
+                                Job Type
+                            </span>
+
+                            <span class="detail-value">
+                                💼
+                                ${escapeHtml(
+                                    job.type ||
+                                    "Not specified"
+                                )}
+                            </span>
+
+                        </div>
+
+
+                        <div class="job-detail">
+
+                            <span class="detail-label">
+                                Salary
+                            </span>
+
+                            <span class="detail-value">
+                                💰
+                                ${escapeHtml(
+                                    job.salary ||
+                                    "Not specified"
+                                )}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Skills -->
+
+                    <div class="job-section">
+
+                        <h3>
+                            Skills
+                        </h3>
+
+                        <p class="job-skills">
+                            ${escapeHtml(
+                                job.skills ||
+                                "Not specified"
+                            )}
+                        </p>
+
+                    </div>
+
+
+                    <!-- Description -->
+
+                    <div class="job-section">
+
+                        <h3>
+                            Job Description
+                        </h3>
+
+                        <p class="job-description">
+                            ${escapeHtml(
+                                job.description ||
+                                "No description available."
+                            )}
+                        </p>
+
+                    </div>
+
+
+                    <!-- Actions -->
+
+                    <div class="job-actions">
+
+                        <button
+                            class="delete-job-btn"
+                            onclick="deleteJob(${job.id})">
+
+                            Delete Job
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(card);
+
+            });
+
+        }
+
+
+        /* =========================
+           Delete Job
+           ========================= */
+
+        function deleteJob(jobId) {
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to delete this job?"
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            fetch(
+                "/api/jobs/" + jobId,
+                {
+                    method: "DELETE"
+                }
+            )
+
+                .then(response => {
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            "Failed to delete job"
+                        );
+
+                    }
+
+
+                    alert(
+                        "Job deleted successfully."
+                    );
+
+
+                    loadJobs();
+
+                })
+
+                .catch(error => {
+
+                    console.error(error);
+
+
+                    alert(
+                        "Unable to delete job."
+                    );
+
+                });
+
+        }
+
+
+        /* =========================
+           Escape HTML
+           ========================= */
+
+        function escapeHtml(value) {
+
+            const div =
+                document.createElement("div");
+
+            div.textContent =
+                value;
+
+            return div.innerHTML;
+
+        }
+
+    </script>
 
 </body>
 
