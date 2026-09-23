@@ -2,16 +2,12 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Candidate Dashboard</title>
+    <title>Candidate Dashboard | Job Portal</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -19,8 +15,9 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
+            font-family: Inter, Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
         }
 
         /* =========================
@@ -31,132 +28,316 @@
             position: fixed;
             left: 0;
             top: 0;
-
-            width: 230px;
+            width: 250px;
             height: 100vh;
 
-            background: #1f2937;
+            background: linear-gradient(
+                180deg,
+                #111827 0%,
+                #1e3a8a 100%
+            );
 
-            padding-top: 25px;
+            padding: 24px 16px;
+
+            display: flex;
+            flex-direction: column;
+
+            box-shadow: 4px 0 20px rgba(15, 23, 42, 0.12);
+
+            z-index: 100;
         }
 
-        .sidebar h2 {
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 8px 12px 30px;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            background: rgba(255, 255, 255, 0.15);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             color: white;
+            font-size: 21px;
+            font-weight: 800;
+        }
 
-            text-align: center;
+        .brand-text {
+            color: white;
+        }
 
-            margin-bottom: 30px;
+        .brand-text h2 {
+            font-size: 19px;
+            margin-bottom: 2px;
+        }
+
+        .brand-text span {
+            font-size: 11px;
+            color: #bfdbfe;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .sidebar a {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 13px;
 
-            padding: 15px 25px;
+            padding: 13px 15px;
 
+            color: #dbeafe;
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            transition: 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.10);
+            color: white;
+            transform: translateX(2px);
+        }
+
+        .sidebar a.active {
+            background: rgba(255, 255, 255, 0.16);
+            color: white;
+            box-shadow:
+                inset 3px 0 0 white;
+        }
+
+        .nav-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .logout {
+            color: #fecaca !important;
+        }
+
+        .logout:hover {
+            background: rgba(239, 68, 68, 0.15) !important;
+        }
+
+        /* =========================
+           MAIN
+           ========================= */
+
+        .main-content {
+            margin-left: 250px;
+            padding: 32px 38px 50px;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           HEADER
+           ========================= */
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 28px;
+        }
+
+        .header-title h1 {
+            font-size: 29px;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+
+        .header-title p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .header-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 12px 18px;
+
+            background: #2563eb;
             color: white;
 
             text-decoration: none;
 
-            font-size: 16px;
+            border-radius: 9px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            box-shadow: 0 5px 14px rgba(37, 99, 235, 0.22);
+
+            transition: 0.2s ease;
         }
 
-        .sidebar a:hover {
-            background: #2563eb;
+        .header-action:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
         }
 
         /* =========================
-           MAIN CONTENT
-           ========================= */
-
-        .main-content {
-            margin-left: 230px;
-
-            padding: 40px;
-        }
-
-        /* =========================
-           WELCOME
+           WELCOME CARD
            ========================= */
 
         .welcome {
-            background: white;
+            position: relative;
+            overflow: hidden;
 
-            padding: 30px;
+            background: linear-gradient(
+                135deg,
+                #1d4ed8,
+                #2563eb 55%,
+                #3b82f6
+            );
 
-            border-radius: 10px;
+            padding: 30px 32px;
+
+            border-radius: 18px;
+
+            color: white;
+
+            margin-bottom: 28px;
 
             box-shadow:
-                0 4px 12px
-                rgba(0, 0, 0, 0.1);
-
-            margin-bottom: 30px;
+                0 12px 30px rgba(37, 99, 235, 0.20);
         }
 
-        .welcome h1 {
-            color: #1f2937;
+        .welcome::after {
+            content: "";
+            position: absolute;
 
-            margin-bottom: 10px;
+            width: 190px;
+            height: 190px;
+
+            right: -55px;
+            top: -75px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        .welcome h2 {
+            font-size: 23px;
+            margin-bottom: 9px;
         }
 
         .welcome p {
-            color: #6b7280;
+            max-width: 650px;
+
+            color: #dbeafe;
+
+            font-size: 14px;
+            line-height: 1.6;
 
             margin-bottom: 20px;
         }
 
-        .job-link {
-            display: inline-block;
+        .browse-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
 
-            margin-top: 10px;
+            padding: 11px 17px;
 
-            padding: 12px 20px;
+            background: white;
+            color: #1d4ed8;
 
-            background: #2563eb;
-
-            color: white;
+            border-radius: 8px;
 
             text-decoration: none;
 
-            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
 
-            font-size: 16px;
+            transition: 0.2s ease;
         }
 
-        .job-link:hover {
-            background: #1d4ed8;
+        .browse-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
         }
 
         /* =========================
-           ERROR MESSAGE
+           ERROR
            ========================= */
 
         .error {
             display: none;
 
-            background: #fee2e2;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
 
             color: #b91c1c;
 
-            padding: 15px;
+            padding: 13px 16px;
 
-            border-radius: 8px;
+            border-radius: 10px;
 
             margin-bottom: 20px;
 
-            text-align: center;
+            font-size: 14px;
         }
 
         /* =========================
-           STATISTICS
+           SECTION TITLE
+           ========================= */
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 14px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+            color: #111827;
+        }
+
+        .section-title span {
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        /* =========================
+           STATS
            ========================= */
 
         .stats {
             display: grid;
 
             grid-template-columns:
-                repeat(4, 1fr);
+                repeat(4, minmax(0, 1fr));
 
-            gap: 20px;
+            gap: 17px;
 
             margin-bottom: 30px;
         }
@@ -164,222 +345,432 @@
         .stat-card {
             background: white;
 
-            padding: 25px;
+            padding: 21px;
+
+            border-radius: 14px;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 5px 18px rgba(15, 23, 42, 0.05);
+
+            transition: 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        .stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 18px;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
 
             border-radius: 10px;
 
-            box-shadow:
-                0 4px 12px
-                rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            text-align: center;
+            font-size: 18px;
+
+            background: #eff6ff;
+            color: #2563eb;
         }
 
-        .stat-card h3 {
+        .stat-label {
             color: #6b7280;
-
-            font-size: 16px;
-
-            margin-bottom: 15px;
+            font-size: 13px;
+            font-weight: 500;
         }
 
         .stat-number {
-            font-size: 32px;
+            font-size: 30px;
+            font-weight: 750;
 
-            font-weight: bold;
-
-            color: #1f2937;
+            color: #111827;
         }
 
         /* =========================
-           DASHBOARD CARDS
+           LOWER CONTENT
            ========================= */
 
-        .cards {
-            display: flex;
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.6fr 1fr;
 
             gap: 20px;
-
-            margin-top: 30px;
-
-            flex-wrap: wrap;
         }
 
         .card {
             background: white;
 
-            width: 220px;
+            border-radius: 15px;
 
-            padding: 25px;
+            border: 1px solid #e5e7eb;
 
-            border-radius: 10px;
+            padding: 23px;
 
             box-shadow:
-                0 4px 12px
-                rgba(0, 0, 0, 0.08);
+                0 5px 18px rgba(15, 23, 42, 0.05);
         }
 
-        .card h3 {
-            color: #374151;
-
-            margin-bottom: 10px;
+        .card-header {
+            margin-bottom: 20px;
         }
 
-        .card p {
-            color: #6b7280;
-
-            font-size: 14px;
-
-            margin-bottom: 15px;
+        .card-header h2 {
+            font-size: 18px;
+            color: #111827;
+            margin-bottom: 5px;
         }
 
-        .card-link {
-            display: inline-block;
-
-            padding: 9px 14px;
-
-            background: #2563eb;
-
-            color: white;
-
-            text-decoration: none;
-
-            border-radius: 5px;
-
-            font-size: 14px;
-        }
-
-        .card-link:hover {
-            background: #1d4ed8;
+        .card-header p {
+            color: #9ca3af;
+            font-size: 13px;
         }
 
         /* =========================
-           MOBILE
+           QUICK ACTIONS
            ========================= */
 
-        @media (max-width: 900px) {
+        .quick-actions {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+        .action {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 15px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 11px;
+
+            text-decoration: none;
+
+            color: #374151;
+
+            transition: 0.2s ease;
+        }
+
+        .action:hover {
+            border-color: #93c5fd;
+            background: #f8fbff;
+            transform: translateY(-1px);
+        }
+
+        .action-icon {
+            width: 38px;
+            height: 38px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eff6ff;
+            color: #2563eb;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+        }
+
+        .action h3 {
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .action p {
+            color: #9ca3af;
+            font-size: 11px;
+        }
+
+        /* =========================
+           INFO CARD
+           ========================= */
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 12px;
+
+            background: #f8fafc;
+
+            border-radius: 9px;
+        }
+
+        .info-icon {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .info-item strong {
+            display: block;
+
+            color: #374151;
+
+            font-size: 12px;
+
+            margin-bottom: 2px;
+        }
+
+        .info-item span {
+            color: #9ca3af;
+            font-size: 11px;
+        }
+
+        /* =========================
+           RESPONSIVE
+           ========================= */
+
+        @media (max-width: 1100px) {
 
             .stats {
                 grid-template-columns:
                     repeat(2, 1fr);
             }
 
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 760px) {
 
             .sidebar {
                 position: relative;
 
                 width: 100%;
-
                 height: auto;
 
-                padding-bottom: 10px;
+                padding: 15px;
             }
 
-            .sidebar h2 {
-                margin-bottom: 10px;
+            .brand {
+                padding-bottom: 18px;
             }
 
-            .sidebar a {
-                padding: 10px 20px;
+            .sidebar-nav {
+                display: grid;
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .sidebar-bottom {
+                margin-top: 8px;
             }
 
             .main-content {
                 margin-left: 0;
 
-                padding: 20px;
+                padding: 22px 16px 35px;
             }
+
+            .top-header {
+                align-items: flex-start;
+
+                gap: 15px;
+
+                flex-direction: column;
+            }
+
+            .header-title h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 520px) {
 
             .stats {
                 grid-template-columns: 1fr;
             }
 
-            .cards {
-                flex-direction: column;
+            .quick-actions {
+                grid-template-columns: 1fr;
             }
 
-            .card {
-                width: 100%;
+            .sidebar-nav {
+                grid-template-columns: 1fr;
             }
 
+            .welcome {
+                padding: 24px;
+            }
+
+            .welcome h2 {
+                font-size: 20px;
+            }
         }
-
     </style>
 
 </head>
 
-
 <body>
-
 
     <!-- =========================
          SIDEBAR
          ========================= -->
 
-    <div class="sidebar">
+    <aside class="sidebar">
 
-        <h2>Job Portal</h2>
+        <div class="brand">
 
-        <a href="candidate-dashboard.html">
-            Dashboard
-        </a>
+            <div class="brand-logo">
+                JP
+            </div>
 
-        <a href="browse-jobs.html">
-            Browse Jobs
-        </a>
+            <div class="brand-text">
+                <h2>Job Portal</h2>
+                <span>Candidate Panel</span>
+            </div>
 
-        <a href="my-applications.html">
-            My Applications
-        </a>
+        </div>
 
-        <a href="candidate-profile.html">
-            My Profile
-        </a>
+        <nav class="sidebar-nav">
 
-        <a href="/logout">
-            Logout
-        </a>
+            <a href="candidate-dashboard.html"
+               class="active">
 
-    </div>
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+
+            </a>
+
+            <a href="browse-jobs.html">
+
+                <span class="nav-icon">⌕</span>
+                <span>Browse Jobs</span>
+
+            </a>
+
+            <a href="my-applications.html">
+
+                <span class="nav-icon">▣</span>
+                <span>My Applications</span>
+
+            </a>
+
+            <a href="candidate-profile.html">
+
+                <span class="nav-icon">◉</span>
+                <span>My Profile</span>
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout"
+               class="logout">
+
+                <span class="nav-icon">↪</span>
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
 
 
     <!-- =========================
          MAIN CONTENT
          ========================= -->
 
-    <div class="main-content">
+    <main class="main-content">
 
+        <!-- HEADER -->
 
-        <!-- WELCOME -->
+        <header class="top-header">
 
-        <div class="welcome">
+            <div class="header-title">
 
-            <h1>
-                Candidate Dashboard
-            </h1>
+                <h1>Candidate Dashboard</h1>
 
-            <p>
-                Welcome to the Job Portal.
-                Find jobs and apply for suitable positions.
-            </p>
+                <p>
+                    Track your applications and discover your next career opportunity.
+                </p>
+
+            </div>
 
             <a href="browse-jobs.html"
-               class="job-link">
+               class="header-action">
 
-                Browse Jobs
+                + Find Jobs
 
             </a>
 
-        </div>
+        </header>
+
+
+        <!-- =========================
+             WELCOME
+             ========================= -->
+
+        <section class="welcome">
+
+            <h2>Welcome back! 👋</h2>
+
+            <p>
+                Explore the latest job opportunities, keep track of your applications,
+                and make sure your profile is ready for employers.
+            </p>
+
+            <a href="browse-jobs.html"
+               class="browse-button">
+
+                Browse Available Jobs →
+
+            </a>
+
+        </section>
 
 
         <!-- ERROR -->
 
         <div id="errorMessage"
              class="error">
-
         </div>
 
 
@@ -387,16 +778,29 @@
              APPLICATION STATISTICS
              ========================= -->
 
-        <div class="stats">
+        <div class="section-title">
 
+            <h2>Application Overview</h2>
 
-            <!-- TOTAL -->
+            <span>Updated automatically</span>
+
+        </div>
+
+        <section class="stats">
 
             <div class="stat-card">
 
-                <h3>
-                    Total Applications
-                </h3>
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Total Applications
+                    </span>
+
+                    <div class="stat-icon">
+                        📄
+                    </div>
+
+                </div>
 
                 <div id="totalApplications"
                      class="stat-number">
@@ -408,13 +812,19 @@
             </div>
 
 
-            <!-- PENDING -->
-
             <div class="stat-card">
 
-                <h3>
-                    Pending
-                </h3>
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Pending
+                    </span>
+
+                    <div class="stat-icon">
+                        ⏳
+                    </div>
+
+                </div>
 
                 <div id="pendingApplications"
                      class="stat-number">
@@ -426,13 +836,19 @@
             </div>
 
 
-            <!-- SELECTED -->
-
             <div class="stat-card">
 
-                <h3>
-                    Selected
-                </h3>
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Selected
+                    </span>
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
 
                 <div id="selectedApplications"
                      class="stat-number">
@@ -444,13 +860,19 @@
             </div>
 
 
-            <!-- REJECTED -->
-
             <div class="stat-card">
 
-                <h3>
-                    Rejected
-                </h3>
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Rejected
+                    </span>
+
+                    <div class="stat-icon">
+                        ×
+                    </div>
+
+                </div>
 
                 <div id="rejectedApplications"
                      class="stat-number">
@@ -461,90 +883,205 @@
 
             </div>
 
-
-        </div>
+        </section>
 
 
         <!-- =========================
-             DASHBOARD CARDS
+             LOWER CARDS
              ========================= -->
 
-        <div class="cards">
+        <section class="dashboard-grid">
 
-
-            <!-- BROWSE JOBS -->
+            <!-- QUICK ACTIONS -->
 
             <div class="card">
 
-                <h3>
-                    Browse Jobs
-                </h3>
+                <div class="card-header">
 
-                <p>
-                    View available jobs posted
-                    by employers.
-                </p>
+                    <h2>Quick Actions</h2>
 
-                <a href="browse-jobs.html"
-                   class="card-link">
+                    <p>
+                        Manage your job search from here.
+                    </p>
 
-                    View Jobs
+                </div>
 
-                </a>
+                <div class="quick-actions">
+
+                    <a href="browse-jobs.html"
+                       class="action">
+
+                        <div class="action-icon">
+                            🔎
+                        </div>
+
+                        <div>
+
+                            <h3>Browse Jobs</h3>
+
+                            <p>Find new opportunities</p>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="my-applications.html"
+                       class="action">
+
+                        <div class="action-icon">
+                            📋
+                        </div>
+
+                        <div>
+
+                            <h3>My Applications</h3>
+
+                            <p>Track your applications</p>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="candidate-profile.html"
+                       class="action">
+
+                        <div class="action-icon">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <h3>My Profile</h3>
+
+                            <p>Update your information</p>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="browse-jobs.html"
+                       class="action">
+
+                        <div class="action-icon">
+                            🚀
+                        </div>
+
+                        <div>
+
+                            <h3>Apply for Jobs</h3>
+
+                            <p>Take the next step</p>
+
+                        </div>
+
+                    </a>
+
+                </div>
 
             </div>
 
 
-            <!-- MY APPLICATIONS -->
+            <!-- CAREER INFO -->
 
             <div class="card">
 
-                <h3>
-                    My Applications
-                </h3>
+                <div class="card-header">
 
-                <p>
-                    View the jobs you have applied
-                    for and check application status.
-                </p>
+                    <h2>Job Search</h2>
 
-                <a href="my-applications.html"
-                   class="card-link">
+                    <p>
+                        Keep your profile ready for employers.
+                    </p>
 
-                    View Applications
+                </div>
 
-                </a>
+                <div class="info-list">
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            🔎
+                        </div>
+
+                        <div>
+
+                            <strong>Discover Opportunities</strong>
+
+                            <span>
+                                Browse available jobs
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            📄
+                        </div>
+
+                        <div>
+
+                            <strong>Track Applications</strong>
+
+                            <span>
+                                Monitor application status
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <strong>Complete Your Profile</strong>
+
+                            <span>
+                                Help employers learn about you
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            ⭐
+                        </div>
+
+                        <div>
+
+                            <strong>Stay Updated</strong>
+
+                            <span>
+                                Check your applications regularly
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
+        </section>
 
-            <!-- MY PROFILE -->
-
-            <div class="card">
-
-                <h3>
-                    My Profile
-                </h3>
-
-                <p>
-                    Manage your candidate profile
-                    and personal information.
-                </p>
-
-                <a href="candidate-profile.html"
-                   class="card-link">
-
-                    View Profile
-
-                </a>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
+    </main>
 
 
     <!-- =========================
@@ -604,6 +1141,7 @@
                         "index.html";
 
                     return;
+
                 }
 
 
@@ -629,7 +1167,7 @@
 
 
                 /*
-                 * Reset counters
+                 * RESET COUNTERS
                  */
 
                 let pendingCount = 0;
@@ -640,7 +1178,7 @@
 
 
                 /*
-                 * Count application statuses
+                 * COUNT APPLICATION STATUSES
                  */
 
                 applications.forEach(
@@ -680,7 +1218,7 @@
 
 
                 /*
-                 * Display counts
+                 * DISPLAY COUNTS
                  */
 
                 pendingElement.textContent =
@@ -691,7 +1229,6 @@
 
                 rejectedElement.textContent =
                     rejectedCount;
-
 
             } catch (error) {
 
@@ -709,13 +1246,12 @@
 
 
         /*
-         * Load statistics when page opens
+         * LOAD DASHBOARD DATA
          */
 
         loadDashboardStats();
 
     </script>
-
 
 </body>
 
