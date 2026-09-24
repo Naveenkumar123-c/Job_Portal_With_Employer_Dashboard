@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Candidate Profile</title>
+    <title>My Profile | Job Portal</title>
 
     <style>
 
@@ -16,145 +16,660 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --sidebar: #111827;
+            --background: #f4f7fb;
+            --card: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+            --border: #e5e7eb;
         }
 
         body {
+            font-family: Inter, Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
             min-height: 100vh;
-            background: #f4f6f9;
         }
 
-        .navbar {
-            background: #1f2937;
-            padding: 18px 30px;
+        /* =========================
+           SIDEBAR
+           ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            width: 250px;
+            height: 100vh;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #111827 0%,
+                    #172554 100%
+                );
+
+            padding: 25px 16px;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+
+            box-shadow:
+                4px 0 20px rgba(15, 23, 42, 0.12);
+
+            z-index: 1000;
+        }
+
+        .brand {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 12px;
+
+            padding: 5px 12px 30px;
         }
 
-        .navbar h2 {
-            color: white;
-        }
+        .brand-icon {
+            width: 44px;
+            height: 44px;
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-        }
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-        .navbar a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 40px auto;
-        }
-
-        .card {
-            background: white;
-            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+            background: rgba(255, 255, 255, 0.12);
+
+            font-size: 20px;
+            font-weight: 800;
         }
 
-        h1 {
-            color: #1f2937;
-            margin-bottom: 10px;
+        .brand-text h2 {
+            font-size: 18px;
+            margin-bottom: 3px;
         }
 
-        .subtitle {
-            color: #6b7280;
-            margin-bottom: 30px;
+        .brand-text span {
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            padding: 13px 14px;
+
+            color: #d1d5db;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            transform: translateX(2px);
+        }
+
+        .nav-link.active {
+            background: #2563eb;
+            color: white;
+
+            box-shadow:
+                0 5px 14px rgba(37, 99, 235, 0.3);
+        }
+
+        .nav-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+
+            padding: 15px 12px 5px;
+
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        /* =========================
+           MAIN
+           ========================= */
+
+        .main-content {
+            margin-left: 250px;
+
+            min-height: 100vh;
+
+            padding: 30px 40px;
+        }
+
+        .page-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* =========================
+           PAGE HEADER
+           ========================= */
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            margin-bottom: 7px;
+        }
+
+        .page-header p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =========================
+           PROFILE LAYOUT
+           ========================= */
+
+        .profile-layout {
+            display: grid;
+
+            grid-template-columns:
+                280px 1fr;
+
+            gap: 22px;
+
+            align-items: start;
+        }
+
+        /* =========================
+           PROFILE INTRO CARD
+           ========================= */
+
+        .profile-intro {
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 7px 22px rgba(15, 23, 42, 0.06);
+
+            position: sticky;
+            top: 25px;
+        }
+
+        .avatar {
+            width: 85px;
+            height: 85px;
+
+            margin: 0 auto 17px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1e40af
+                );
+
+            color: white;
+
+            font-size: 30px;
+            font-weight: 800;
+
+            box-shadow:
+                0 8px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        .profile-intro h2 {
+            font-size: 19px;
+
+            margin-bottom: 6px;
+
+            word-break: break-word;
+        }
+
+        .profile-intro p {
+            color: var(--muted);
+            font-size: 13px;
+
+            word-break: break-word;
+        }
+
+        .profile-tip {
+            margin-top: 22px;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #eff6ff;
+
+            color: #1e40af;
+
+            text-align: left;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+        /* =========================
+           FORM CARD
+           ========================= */
+
+        .profile-card {
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 7px 22px rgba(15, 23, 42, 0.06);
+        }
+
+        .card-heading {
+            margin-bottom: 25px;
+
+            padding-bottom: 18px;
+
+            border-bottom: 1px solid #eef0f3;
+        }
+
+        .card-heading h2 {
+            font-size: 19px;
+
+            margin-bottom: 5px;
+        }
+
+        .card-heading p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =========================
+           MESSAGES
+           ========================= */
+
+        .message {
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;
+
+            font-size: 13px;
+
+            display: none;
+        }
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
+
+            border: 1px solid #bbf7d0;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+
+            border: 1px solid #fecaca;
+        }
+
+        /* =========================
+           FORM
+           ========================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
         label {
             display: block;
+
             margin-bottom: 7px;
-            font-weight: bold;
+
             color: #374151;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .required-note {
+            color: #9ca3af;
+            font-size: 11px;
+            font-weight: 400;
         }
 
         input,
         textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 15px;
+
+            padding: 12px 13px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 9px;
+
+            background: white;
+
+            color: #111827;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
-        input:disabled {
-            background: #f1f5f9;
-            color: #64748b;
+        input {
+            min-height: 44px;
         }
 
         textarea {
-            min-height: 120px;
+            min-height: 125px;
             resize: vertical;
+            line-height: 1.55;
         }
 
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #2563eb;
+
+            border-color: var(--primary);
+
+            box-shadow:
+                0 0 0 3px rgba(37, 99, 235, 0.10);
         }
 
-        button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 6px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
+        input:disabled {
+            background: #f3f4f6;
+
+            color: #6b7280;
+
+            cursor: not-allowed;
         }
 
-        button:hover {
-            background: #1d4ed8;
+        .readonly-note {
+            margin-top: 5px;
+
+            color: #9ca3af;
+
+            font-size: 11px;
         }
 
-        .resume-info {
-            margin-top: 10px;
-            padding: 12px;
-            background: #f8fafc;
-            border-radius: 6px;
-            color: #475569;
+        /* =========================
+           RESUME
+           ========================= */
+
+        .resume-box {
+            padding: 18px;
+
+            border: 1px dashed #bfdbfe;
+
+            background: #f8fbff;
+
+            border-radius: 12px;
+        }
+
+        .resume-box input {
+            background: white;
+        }
+
+        .resume-help {
+            margin-top: 8px;
+
+            color: #6b7280;
+
+            font-size: 11px;
+        }
+
+        .current-resume {
+            margin-top: 14px;
+
+            padding: 12px 13px;
+
+            border-radius: 9px;
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            font-size: 13px;
+
+            color: #4b5563;
+        }
+
+        .current-resume strong {
+            color: #111827;
         }
 
         .resume-link {
             display: none;
-            margin-left: 10px;
-            color: #2563eb;
+
+            margin-left: 8px;
+
+            color: var(--primary);
+
             text-decoration: none;
-            font-weight: bold;
+
+            font-weight: 700;
         }
 
         .resume-link:hover {
             text-decoration: underline;
         }
 
-        .success {
-            margin-bottom: 20px;
-            padding: 12px;
-            background: #dcfce7;
-            color: #166534;
-            border-radius: 6px;
-            display: none;
+        /* =========================
+           ACTIONS
+           ========================= */
+
+        .form-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding-top: 8px;
+
+            border-top: 1px solid #eef0f3;
         }
 
-        .error {
-            margin-bottom: 20px;
-            padding: 12px;
-            background: #fee2e2;
-            color: #b91c1c;
-            border-radius: 6px;
-            display: none;
+        .save-button {
+            border: none;
+
+            padding: 12px 22px;
+
+            border-radius: 9px;
+
+            background: var(--primary);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 6px 15px rgba(37, 99, 235, 0.20);
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .save-button:hover {
+            background: var(--primary-dark);
+
+            transform: translateY(-1px);
+        }
+
+        .save-button:disabled {
+            opacity: 0.65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+        /* =========================
+           RESPONSIVE
+           ========================= */
+
+        @media (max-width: 950px) {
+
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                padding: 25px;
+            }
+
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-intro {
+                position: relative;
+                top: auto;
+            }
+
+            .profile-tip {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+                height: auto;
+
+                padding: 15px;
+            }
+
+            .brand {
+                padding: 5px 8px 15px;
+            }
+
+            .nav {
+                display: grid;
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .sidebar-footer {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+
+                padding: 20px 15px;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .profile-card {
+                padding: 22px 18px;
+            }
+
+            .form-actions {
+                justify-content: stretch;
+            }
+
+            .save-button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            .nav {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-intro {
+                padding: 20px;
+            }
         }
 
     </style>
@@ -163,330 +678,475 @@
 
 <body>
 
-<nav class="navbar">
 
-    <h2>Job Portal</h2>
+    <!-- =========================
+         SIDEBAR
+         ========================= -->
 
-    <div>
+    <aside class="sidebar">
 
-        <a href="candidate-dashboard.html">
-            Dashboard
-        </a>
+        <div class="brand">
 
-        <a href="browse-jobs.html">
-            Browse Jobs
-        </a>
+            <div class="brand-icon">
+                JP
+            </div>
 
-        <a href="my-applications.html">
-            My Applications
-        </a>
+            <div class="brand-text">
 
-        <a href="candidate-profile.html">
-            My Profile
-        </a>
+                <h2>Job Portal</h2>
 
-        <a href="/logout">
-            Logout
-        </a>
+                <span>Candidate Panel</span>
 
-    </div>
+            </div>
 
-</nav>
-
-<div class="container">
-
-    <div class="card">
-
-        <h1>My Profile</h1>
-
-        <p class="subtitle">
-            Manage your candidate profile information.
-        </p>
-
-        <div id="successMessage"
-             class="success">
         </div>
 
-        <div id="errorMessage"
-             class="error">
+
+        <nav class="nav">
+
+            <a
+                href="candidate-dashboard.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a
+                href="browse-jobs.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">⌕</span>
+                <span>Browse Jobs</span>
+            </a>
+
+            <a
+                href="my-applications.html"
+                class="nav-link"
+            >
+                <span class="nav-icon">▣</span>
+                <span>My Applications</span>
+            </a>
+
+            <a
+                href="candidate-profile.html"
+                class="nav-link active"
+            >
+                <span class="nav-icon">●</span>
+                <span>My Profile</span>
+            </a>
+
+            <a
+                href="/logout"
+                class="nav-link"
+            >
+                <span class="nav-icon">↪</span>
+                <span>Logout</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+            Keep your professional profile updated
         </div>
 
-        <form id="profileForm">
+    </aside>
 
-            <div class="form-group">
 
-                <label for="name">
-                    Full Name
-                </label>
+    <!-- =========================
+         MAIN
+         ========================= -->
 
-                <input
-                    type="text"
-                    id="name"
-                    disabled>
+    <main class="main-content">
+
+        <div class="page-container">
+
+            <header class="page-header">
+
+                <h1>My Profile</h1>
+
+                <p>
+                    Keep your professional information updated
+                    so employers can learn more about you.
+                </p>
+
+            </header>
+
+
+            <div class="profile-layout">
+
+
+                <!-- =========================
+                     PROFILE INTRO
+                     ========================= -->
+
+                <section class="profile-intro">
+
+                    <div
+                        class="avatar"
+                        id="avatar"
+                    >
+                        U
+                    </div>
+
+                    <h2 id="profileName">
+                        Candidate
+                    </h2>
+
+                    <p id="profileEmail">
+                        Loading profile...
+                    </p>
+
+                    <div class="profile-tip">
+
+                        <strong>Profile tip</strong>
+
+                        <br>
+
+                        Add your qualification, skills,
+                        experience and resume to make your
+                        profile more useful to employers.
+
+                    </div>
+
+                </section>
+
+
+                <!-- =========================
+                     PROFILE FORM
+                     ========================= -->
+
+                <section class="profile-card">
+
+                    <div class="card-heading">
+
+                        <h2>Personal & Professional Details</h2>
+
+                        <p>
+                            Update the information associated
+                            with your candidate account.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        id="successMessage"
+                        class="message success">
+                    </div>
+
+
+                    <div
+                        id="errorMessage"
+                        class="message error">
+                    </div>
+
+
+                    <form id="profileForm">
+
+
+                        <div class="form-grid">
+
+
+                            <!-- NAME -->
+
+                            <div class="form-group">
+
+                                <label for="name">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    disabled>
+
+                                <div class="readonly-note">
+                                    Name is managed by your account.
+                                </div>
+
+                            </div>
+
+
+                            <!-- EMAIL -->
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    disabled>
+
+                                <div class="readonly-note">
+                                    Email is managed by your account.
+                                </div>
+
+                            </div>
+
+
+                            <!-- PHONE -->
+
+                            <div class="form-group">
+
+                                <label for="phone">
+                                    Phone
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="phone"
+                                    placeholder="Enter your phone number">
+
+                            </div>
+
+
+                            <!-- QUALIFICATION -->
+
+                            <div class="form-group">
+
+                                <label for="qualification">
+                                    Qualification
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="qualification"
+                                    placeholder="Example: B.Tech Computer Science">
+
+                            </div>
+
+
+                            <!-- SKILLS -->
+
+                            <div class="form-group full">
+
+                                <label for="skills">
+                                    Skills
+                                </label>
+
+                                <textarea
+                                    id="skills"
+                                    placeholder="Example: Java, Spring Boot, MySQL, HTML, CSS, JavaScript"></textarea>
+
+                            </div>
+
+
+                            <!-- RESUME -->
+
+                            <div class="form-group full">
+
+                                <label for="resume">
+                                    Resume
+                                </label>
+
+                                <div class="resume-box">
+
+                                    <input
+                                        type="file"
+                                        id="resume"
+                                        accept=".pdf,.doc,.docx">
+
+                                    <div class="resume-help">
+                                        Accepted formats: PDF, DOC, DOCX
+                                    </div>
+
+
+                                    <div class="current-resume">
+
+                                        Current resume:
+
+                                        <strong
+                                            id="currentResume">
+                                            No resume uploaded
+                                        </strong>
+
+
+                                        <a
+                                            id="resumeLink"
+                                            class="resume-link"
+                                            href="/api/candidate-profile/resume"
+                                            target="_blank">
+
+                                            View Resume
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-actions">
+
+                            <button
+                                type="submit"
+                                class="save-button"
+                                id="saveButton">
+
+                                Save Profile
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
 
             </div>
 
-            <div class="form-group">
+        </div>
 
-                <label for="email">
-                    Email
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    disabled>
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="phone">
-                    Phone
-                </label>
-
-                <input
-                    type="text"
-                    id="phone"
-                    placeholder="Enter phone number">
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="qualification">
-                    Qualification
-                </label>
-
-                <input
-                    type="text"
-                    id="qualification"
-                    placeholder="Example: B.Tech CSE">
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="skills">
-                    Skills
-                </label>
-
-                <textarea
-                    id="skills"
-                    placeholder="Example: Java, Spring Boot, MySQL, HTML, CSS"></textarea>
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="resume">
-                    Upload Resume
-                </label>
-
-                <input
-                    type="file"
-                    id="resume"
-                    accept=".pdf,.doc,.docx">
-
-                <div class="resume-info">
-                    Allowed files: PDF, DOC, DOCX
-                </div>
-
-                <div class="resume-info">
-
-                    Current resume:
-
-                    <strong id="currentResume">
-                        No resume uploaded
-                    </strong>
-
-                    <a
-                        id="resumeLink"
-                        class="resume-link"
-                        href="/api/candidate-profile/resume"
-                        target="_blank">
-
-                        View Resume
-
-                    </a>
-
-                </div>
-
-            </div>
-
-            <button type="submit">
-                Save Profile
-            </button>
-
-        </form>
-
-    </div>
-
-</div>
-
-<script>
-
-    const profileForm =
-        document.getElementById("profileForm");
-
-    const nameInput =
-        document.getElementById("name");
-
-    const emailInput =
-        document.getElementById("email");
-
-    const phoneInput =
-        document.getElementById("phone");
-
-    const qualificationInput =
-        document.getElementById("qualification");
-
-    const skillsInput =
-        document.getElementById("skills");
-
-    const resumeInput =
-        document.getElementById("resume");
-
-    const currentResume =
-        document.getElementById("currentResume");
-
-    const resumeLink =
-        document.getElementById("resumeLink");
-
-    const successMessage =
-        document.getElementById("successMessage");
-
-    const errorMessage =
-        document.getElementById("errorMessage");
+    </main>
 
 
-    // =========================
-    // DISPLAY RESUME
-    // =========================
+    <script>
 
-    function displayResume(resume) {
+        const profileForm =
+            document.getElementById(
+                "profileForm"
+            );
 
-        if (resume) {
+        const nameInput =
+            document.getElementById(
+                "name"
+            );
 
-            currentResume.textContent =
-                resume;
+        const emailInput =
+            document.getElementById(
+                "email"
+            );
 
-            resumeLink.style.display =
-                "inline-block";
+        const phoneInput =
+            document.getElementById(
+                "phone"
+            );
 
-        } else {
+        const qualificationInput =
+            document.getElementById(
+                "qualification"
+            );
 
-            currentResume.textContent =
-                "No resume uploaded";
+        const skillsInput =
+            document.getElementById(
+                "skills"
+            );
 
-            resumeLink.style.display =
-                "none";
+        const resumeInput =
+            document.getElementById(
+                "resume"
+            );
+
+        const currentResume =
+            document.getElementById(
+                "currentResume"
+            );
+
+        const resumeLink =
+            document.getElementById(
+                "resumeLink"
+            );
+
+        const successMessage =
+            document.getElementById(
+                "successMessage"
+            );
+
+        const errorMessage =
+            document.getElementById(
+                "errorMessage"
+            );
+
+        const saveButton =
+            document.getElementById(
+                "saveButton"
+            );
+
+        const profileName =
+            document.getElementById(
+                "profileName"
+            );
+
+        const profileEmail =
+            document.getElementById(
+                "profileEmail"
+            );
+
+        const avatar =
+            document.getElementById(
+                "avatar"
+            );
+
+
+        /* =========================
+           RESUME DISPLAY
+           ========================= */
+
+        function displayResume(resume) {
+
+            if (resume) {
+
+                currentResume.textContent =
+                    resume;
+
+                resumeLink.style.display =
+                    "inline-block";
+
+            } else {
+
+                currentResume.textContent =
+                    "No resume uploaded";
+
+                resumeLink.style.display =
+                    "none";
+            }
         }
-    }
 
 
-    // =========================
-    // LOAD PROFILE
-    // =========================
+        /* =========================
+           PROFILE SUMMARY
+           ========================= */
 
-    async function loadProfile() {
+        function updateProfileSummary(
+            name,
+            email
+        ) {
 
-        try {
+            const displayName =
+                name || "Candidate";
 
-            const response =
-                await fetch(
-                    "/api/candidate-profile/me"
-                );
+            profileName.textContent =
+                displayName;
 
-            if (response.status === 401) {
+            profileEmail.textContent =
+                email || "No email available";
 
-                window.location.href =
-                    "/index.html";
+            const firstLetter =
+                displayName
+                    .trim()
+                    .charAt(0)
+                    .toUpperCase();
 
-                return;
-            }
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Failed to load profile"
-                );
-            }
-
-            const profile =
-                await response.json();
-
-            nameInput.value =
-                profile.name || "";
-
-            emailInput.value =
-                profile.email || "";
-
-            phoneInput.value =
-                profile.phone || "";
-
-            qualificationInput.value =
-                profile.qualification || "";
-
-            skillsInput.value =
-                profile.skills || "";
-
-            displayResume(
-                profile.resume
-            );
-
-        } catch (error) {
-
-            errorMessage.textContent =
-                error.message;
-
-            errorMessage.style.display =
-                "block";
+            avatar.textContent =
+                firstLetter || "U";
         }
-    }
 
 
-    // =========================
-    // SAVE PROFILE
-    // =========================
+        /* =========================
+           LOAD PROFILE
+           ========================= */
 
-    profileForm.addEventListener(
-        "submit",
-        async function(event) {
-
-            event.preventDefault();
-
-            successMessage.style.display =
-                "none";
-
-            errorMessage.style.display =
-                "none";
-
-            const formData =
-                new FormData();
-
-            formData.append(
-                "phone",
-                phoneInput.value
-            );
-
-            formData.append(
-                "qualification",
-                qualificationInput.value
-            );
-
-            formData.append(
-                "skills",
-                skillsInput.value
-            );
-
-            if (resumeInput.files.length > 0) {
-
-                formData.append(
-                    "resume",
-                    resumeInput.files[0]
-                );
-            }
+        async function loadProfile() {
 
             try {
 
@@ -494,10 +1154,10 @@
                     await fetch(
                         "/api/candidate-profile/me",
                         {
-                            method: "PUT",
-                            body: formData
+                            credentials: "same-origin"
                         }
                     );
+
 
                 if (response.status === 401) {
 
@@ -507,46 +1167,213 @@
                     return;
                 }
 
-                const result =
-                    await response.text();
 
                 if (!response.ok) {
 
-                    throw new Error(result);
+                    throw new Error(
+                        "Failed to load profile"
+                    );
+
                 }
 
+
                 const profile =
-                    JSON.parse(result);
+                    await response.json();
+
+
+                nameInput.value =
+                    profile.name || "";
+
+                emailInput.value =
+                    profile.email || "";
+
+                phoneInput.value =
+                    profile.phone || "";
+
+                qualificationInput.value =
+                    profile.qualification || "";
+
+                skillsInput.value =
+                    profile.skills || "";
+
+
+                updateProfileSummary(
+                    profile.name,
+                    profile.email
+                );
+
 
                 displayResume(
                     profile.resume
                 );
 
-                successMessage.textContent =
-                    "Profile saved successfully.";
-
-                successMessage.style.display =
-                    "block";
-
-                resumeInput.value = "";
 
             } catch (error) {
 
                 errorMessage.textContent =
-                    error.message;
+                    error.message ||
+                    "Unable to load your profile.";
 
                 errorMessage.style.display =
                     "block";
             }
-
         }
-    );
 
 
-    // Load profile
-    loadProfile();
+        /* =========================
+           SAVE PROFILE
+           ========================= */
 
-</script>
+        profileForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                successMessage.style.display =
+                    "none";
+
+                errorMessage.style.display =
+                    "none";
+
+
+                saveButton.disabled =
+                    true;
+
+                saveButton.textContent =
+                    "Saving...";
+
+
+                const formData =
+                    new FormData();
+
+
+                formData.append(
+                    "phone",
+                    phoneInput.value
+                );
+
+
+                formData.append(
+                    "qualification",
+                    qualificationInput.value
+                );
+
+
+                formData.append(
+                    "skills",
+                    skillsInput.value
+                );
+
+
+                if (
+                    resumeInput.files.length > 0
+                ) {
+
+                    formData.append(
+                        "resume",
+                        resumeInput.files[0]
+                    );
+
+                }
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/api/candidate-profile/me",
+                            {
+                                method: "PUT",
+                                body: formData,
+                                credentials:
+                                    "same-origin"
+                            }
+                        );
+
+
+                    if (
+                        response.status === 401
+                    ) {
+
+                        window.location.href =
+                            "/index.html";
+
+                        return;
+                    }
+
+
+                    const result =
+                        await response.text();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            result ||
+                            "Failed to save profile"
+                        );
+
+                    }
+
+
+                    const profile =
+                        JSON.parse(result);
+
+
+                    displayResume(
+                        profile.resume
+                    );
+
+
+                    updateProfileSummary(
+                        profile.name,
+                        profile.email
+                    );
+
+
+                    successMessage.textContent =
+                        "Profile saved successfully.";
+
+                    successMessage.style.display =
+                        "block";
+
+
+                    resumeInput.value = "";
+
+
+                } catch (error) {
+
+                    errorMessage.textContent =
+                        error.message ||
+                        "Unable to save your profile.";
+
+                    errorMessage.style.display =
+                        "block";
+
+
+                } finally {
+
+                    saveButton.disabled =
+                        false;
+
+                    saveButton.textContent =
+                        "Save Profile";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           LOAD
+           ========================= */
+
+        loadProfile();
+
+    </script>
 
 </body>
 
