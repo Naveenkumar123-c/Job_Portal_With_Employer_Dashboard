@@ -76,19 +76,16 @@ public class AuthController {
                         role.toLowerCase()
                 );
 
-        // User not found
         if (user.isEmpty()) {
             return "redirect:/index.html?error=Invalid%20email%20or%20password";
         }
 
         User loggedInUser = user.get();
 
-        // Wrong password
         if (!loggedInUser.getPassword().equals(password)) {
-            return "redirect:/index.html?error=Invalid%20email%20or%20password";       
+            return "redirect:/index.html?error=Invalid%20email%20or%20password";
         }
 
-        // Create login session
         session.setAttribute(
                 "userId",
                 loggedInUser.getId()
@@ -109,20 +106,19 @@ public class AuthController {
                 loggedInUser.getRole()
         );
 
-        // Send login notification only after successful login
+        // Login notification email.
+        // Email failure will not prevent login.
         try {
             loginNotificationService.sendLoginNotification(
                     loggedInUser.getEmail()
             );
         } catch (Exception e) {
-            // Email failure should not prevent the user from logging in
             System.err.println(
                     "Login notification email could not be sent: "
                             + e.getMessage()
             );
         }
 
-        // Redirect based on role
         if ("candidate".equalsIgnoreCase(
                 loggedInUser.getRole())) {
 
