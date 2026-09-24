@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jp.jobportal.entity.User;
 import com.jp.jobportal.repository.UserRepository;
+import com.jp.jobportal.service.LoginNotificationService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -16,9 +17,14 @@ import jakarta.servlet.http.HttpSession;
 public class AuthController {
 
     private final UserRepository userRepository;
+    private final LoginNotificationService loginNotificationService;
 
-    public AuthController(UserRepository userRepository) {
+    public AuthController(
+            UserRepository userRepository,
+            LoginNotificationService loginNotificationService) {
+
         this.userRepository = userRepository;
+        this.loginNotificationService = loginNotificationService;
     }
 
     @GetMapping("/register")
@@ -70,16 +76,19 @@ public class AuthController {
                         role.toLowerCase()
                 );
 
+        // User not found
         if (user.isEmpty()) {
-            return "redirect:/index.html";
+            return "redirect:/index.html?error=Invalid%20email%20or%20password";
         }
 
         User loggedInUser = user.get();
 
+        // Wrong password
         if (!loggedInUser.getPassword().equals(password)) {
-            return "redirect:/index.html";
+            return "redirect:/index.html?error=Invalid%20email%20or%20password";       
         }
 
+        // Create login session
         session.setAttribute(
                 "userId",
                 loggedInUser.getId()
@@ -100,6 +109,20 @@ public class AuthController {
                 loggedInUser.getRole()
         );
 
+        // Send login notification only after successful login
+        try {
+            loginNotificationService.sendLoginNotification(
+                    loggedInUser.getEmail()
+            );
+        } catch (Exception e) {
+            // Email failure should not prevent the user from logging in
+            System.err.println(
+                    "Login notification email could not be sent: "
+                            + e.getMessage()
+            );
+        }
+
+        // Redirect based on role
         if ("candidate".equalsIgnoreCase(
                 loggedInUser.getRole())) {
 
